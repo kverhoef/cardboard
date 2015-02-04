@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Chrome Experiments for Cardboard</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link href="css/css.css" rel="stylesheet" type="text/css">
+	</head>
+<body>
+
+<div id="scene"></div>
+
+<script src="js/external/jquery-2.1.1.min.js"></script>
+<script src="js/external/three.js"></script>
+<script src="js/external/helvetiker_regular.typeface.js"></script>
+<script src="js/StereoEffect.js"></script>
+<script src="js/DeviceOrientationControls.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script src="js/external/has.js"></script>
+<script src="js/Cardboard.js"></script>
+<script>
+	var root = this;
+	var SCALE = 3;
+</script>
+<script src="js/Cursor.js"></script>
+<script src="js/Room1.js"></script>
+<script src="js/Room2.js"></script>
+<script src="js/MainController.js"></script>
+<script src="js/PhotoSphere.js"></script>
+<script src="js/Hotspot.js"></script>
+<script src="js/DetailImage.js"></script>
+<script src="js/Textbox.js"></script>
+<script>
+
+// initialize the screen
+var cardboard, mainController, cursor;
+
+function setup() {
+
+	cardboard = new Cardboard();
+
+	mainController = new MainController();
+	cardboard.scene.add(mainController);
+
+
+	cursor = new Cursor();
+	cardboard.camera.add(cursor);
+	cursor.position.z = -3 * SCALE;
+	cursor.lookAt(cardboard.camera.position);
+
+
+	cardboard.effect.separation = 0.6;
+
+	if (!has.mobile) {
+		setTimeout(function() {
+			cardboard.orbitControls.target.set(0, 0.3, 1);
+		}, 0);
+	}
+
+	cardboard.update = function() {
+		Cardboard.prototype.update.call(this);
+		mainController.update();
+	};
+
+	document.getElementById('scene').appendChild(cardboard.renderer.domElement);
+	
+	// Start
+	root.MainController = MainController;
+	root.Cursor = Cursor;
+	
+}
+
+setup();
+
+</script>
+
+</body>
+</html>
