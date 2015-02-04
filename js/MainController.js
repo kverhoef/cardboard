@@ -38,13 +38,13 @@ MainController.prototype.findIntersections = function() {
 	var gaze = new THREE.Vector3(0, 0, 1);
 	window.gaze = gaze;
 
-	this.projector.unprojectVector(gaze, cardboard.camera);
+	gaze.unproject( cardboard.camera );
 
 	this.raycaster.set(
 		cardboard.camera.position,
 		gaze.sub(cardboard.camera.position).normalize()
 	);
-
+	
 	var intersects = this.raycaster.intersectObjects(this.intersectables);
 
 	// reset cursur scale
