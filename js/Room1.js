@@ -6,10 +6,10 @@ function Room1(rootThis){
 	var room = this;
 	
 	this.textbox = new Textbox(rootThis, {
-		text: "Hello world!",
-		radius: 3 * SCALE,
-		degree: 180,
-		verticalDegree: 0,
+		text: "Hello world! ",
+		radius: 5 * SCALE,
+		degree: 10,
+		verticalDegree: 180,
 		color: 0x000
 	});
 	
