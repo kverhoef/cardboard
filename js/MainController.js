@@ -10,8 +10,8 @@ function MainController() {
 	//scene.rotation.y = 1000;
 	
 	// Start the first room
-	//var room1 = new Room1(scene);
-	var room1 = new GameRoom(scene);
+	var room1 = new Room1(scene);
+	//var room1 = new GameRoom(scene);
 	scene.add(room1);
 	
 	this.removeRoom = function(room){

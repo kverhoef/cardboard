@@ -5,8 +5,12 @@ function Room1(rootThis){
 	THREE.Object3D.call(this);
 	var room = this;
 	
+	this.textLights = new TextLights(rootThis, {
+
+	});
+	
 	this.textbox = new Textbox(rootThis, {
-		text: "Hello world! ",
+		text: "We focus on value",
 		radius: 5 * SCALE,
 		degree: 10,
 		verticalDegree: 180,

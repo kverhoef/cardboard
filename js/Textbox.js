@@ -11,16 +11,6 @@ function Textbox(rootThis, args) {
 
 	text3d.computeBoundingBox();
 
-	var dirLight = new THREE.DirectionalLight( 0xffffff, 0.125 );
-	dirLight.position.set( 0, 0, 0 )
-	rootThis.add( dirLight );
-
-	var pointLight = new THREE.PointLight( 0xffffff, 1.5 );
-	pointLight.position.set( 5, 0, 0 );
-	rootThis.add( pointLight );
-
-	pointLight.color.setHSL( 0.1, 1, 0.5 );
-
 	var phi = (args.verticalDegree)*Math.PI/180;
     var theta = (args.degree-180)*Math.PI/180;
 	
