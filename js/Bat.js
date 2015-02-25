@@ -13,12 +13,14 @@ function Bat(scene, args) {
 	
 	this.rectShape = rectShape;
 	
+	var batMaterial = new THREE.MeshLambertMaterial({color: 0xD43001}); 
+	
 	var rectGeom = new THREE.ShapeGeometry( rectShape ); 
-	var rectMesh = new THREE.Mesh( rectGeom, new THREE.MeshBasicMaterial( { color: 0xff00ff } ) ) ;	
+	var rectMesh = new THREE.Mesh(rectGeom, batMaterial);
 	
 	this.rectMesh = rectMesh;
 	
-	var centroid = getCentroid( rectMesh );
+	var centroid = getCentroid(rectMesh);
 	rectMesh.geometry.applyMatrix(new THREE.Matrix4().makeTranslation( -centroid.x, -centroid.y, -centroid.z ) );
 	
 	rectMesh.position.x = 0;

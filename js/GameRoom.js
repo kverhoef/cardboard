@@ -5,6 +5,8 @@ function GameRoom(scene){
 	THREE.Object3D.call(this);
 	var room = this;
 	
+	
+	
 	this.bat = new Bat(scene, {
 		rectLength: 5, 
 		rectWidth: 5
@@ -36,10 +38,18 @@ function GameRoom(scene){
     scene.add(light);
 	light.intensity = 0.7;
 
-	scene.add(createWallNorth());
-	scene.add(createWallEast());
-	scene.add(createWallWest());
-	scene.add(createWallSouth());
+	var wallNorth = createWallNorth();
+	scene.add(wallNorth);
+	var wallEast = createWallEast();
+	scene.add(wallEast);
+	var wallWest = createWallWest();
+	scene.add(wallWest);
+	var wallSouth = createWallSouth();
+	scene.add(wallSouth);
+	
+	this.ball = new Ball(scene, {
+		collidableMeshList: [wallNorth, wallEast, wallWest, wallSouth]
+	})
 
 }
 
