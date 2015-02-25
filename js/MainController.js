@@ -2,20 +2,22 @@ function MainController() {
 	THREE.Object3D.call(this);
 	lookToClick.bind(this)();
 	
-	var rootThis = this;
+	var scene = this;
 
-	rootThis.showHotspots = true;
+	scene.showHotspots = true;
 
 	// Rotate
-	rootThis.rotation.y = 1000;
+	//scene.rotation.y = 1000;
 	
 	// Start the first room
-	var room1 = new Room1(rootThis);
-	rootThis.add(room1);
+	//var room1 = new Room1(scene);
+	var room1 = new GameRoom(scene);
+	scene.add(room1);
 	
 	this.removeRoom = function(room){
-		rootThis.intersectables = [];
-		rootThis.remove(room1);
+		scene.intersectables = [];
+		scene.updatables = [];
+		scene.remove(room1);
 	}
 	
 }
@@ -27,6 +29,7 @@ function lookToClick() {
 
 	// List of possible intersectables
 	this.intersectables = [];
+	this.updatables = [];
 }
 
 MainController.prototype = Object.create(THREE.Object3D.prototype);
@@ -110,4 +113,13 @@ MainController.prototype.findIntersections = function() {
 
 MainController.prototype.update = function() {
 	this.findIntersections();
+	
+	for (var i=0;i<this.updatables.length;i++) {
+		var updatable = this.updatables[i];
+		updatable();
+	}
+	
+	
+	
+	
 };
