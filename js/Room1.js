@@ -12,10 +12,31 @@ function Room1(rootThis){
 	this.textbox = new Textbox(rootThis, {
 		text: "We focus on value",
 		radius: 5 * SCALE,
-		degree: 10,
-		verticalDegree: 180,
-		color: 0x000
+		degree: 50,
+		verticalDegree: 165,
+		color: 0x70C6F4
 	});
+	
+	this.smallText = function(text, verticalDegree){
+		return new Textbox(rootThis, {
+			text: text,
+			radius: 5 * SCALE,
+			degree: 50,
+			verticalDegree: verticalDegree,
+			color: 0x70C6F4,
+			size: 1
+		});
+	}
+	
+	this.smallText("We are convinced that progress requires a blend of", 176);
+	this.smallText("domain knowledge and expertise. You know your ", 182);
+	this.smallText("business and we know how information technology can be ", 188);
+	this.smallText("used. We focus on creating value by cooperating with ", 194);
+	this.smallText("clients, partners and other stakeholders in value networks. ", 200);
+	this.smallText("Our worlds converse where we identify, create and seize ", 206);
+	this.smallText("opportunities together.", 212);
+	
+	// 0xffffff
 	
 	this.photoSphere = new PhotoSphere(rootThis, 'images/small.jpg');
 	

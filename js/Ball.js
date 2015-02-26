@@ -11,6 +11,7 @@ function Ball(scene, args) {
 	this.speed = 0.1;
  
 	// create the sphere's material
+	// var sphereMaterial = new THREE.MeshPhongMaterial({color: 0xD43001, shading: THREE.SmoothShading}); 
 	var sphereMaterial = new THREE.MeshLambertMaterial({color: 0xD43001}); 
 	
 	this.ball = new THREE.Mesh(

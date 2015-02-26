@@ -6,7 +6,7 @@ Textbox.prototype.constructor = Textbox;
 function Textbox(rootThis, args) {
 	THREE.Object3D.call(this);
 
-	var text3d = createText(args.text);
+	var text3d = createText(args);
 	text3d.receiveShadow = true;
 
 	text3d.computeBoundingBox();
@@ -31,9 +31,6 @@ function Textbox(rootThis, args) {
 
 	rootThis.add(textMesh1);
 	
-	
-	
-
 	this.remove = function(){
 		// Remove from scene
 		rootThis.remove(text);
@@ -52,7 +49,6 @@ function getCentroid( mesh ) {
 	var z0 = boundingBox.min.z;
 	var z1 = boundingBox.max.z;
 
-
     var bWidth = ( x0 > x1 ) ? x0 - x1 : x1 - x0;
     var bHeight = ( y0 > y1 ) ? y0 - y1 : y1 - y0;
     var bDepth = ( z0 > z1 ) ? z0 - z1 : z1 - z0;
@@ -65,34 +61,33 @@ function getCentroid( mesh ) {
 
 }
 
-function createText(text) {
+function createText(args) {
 
-	var textGeo = new THREE.TextGeometry( text, {
-
-		size: 3,
-		height: 0.2,
-		curveSegments: 2,
-
-		font: "helvetiker",
-	
-		bevelThickness: 0.1,
-		bevelSize: 0.1,
-		bevelEnabled: true,
-
+	var textGeo = new THREE.TextGeometry( args.text, {
+		size: args.size || 3,
+		height: args.height || 0.4,
+		curveSegments: args.curveSegments || 2,
+		font: args.font || "helvetiker",
+		bevelThickness: args.bevelThickness || 0.1,
+		bevelSize: args.bevelSize || 0.1,
+		bevelEnabled: args.bevelEnabled || true,
 		material: 0,
 		extrudeMaterial: 1
-
 	});
 
 	textGeo.computeBoundingBox();
 	textGeo.computeVertexNormals();
-
-	var material = new THREE.MeshFaceMaterial( [
-		new THREE.MeshPhongMaterial( { color: 0xffffff, shading: THREE.SmoothShading } ), // front
-		new THREE.MeshPhongMaterial( { color: 0xffffff, shading: THREE.SmoothShading } ) // side
-	] );
 	
-	var material = new THREE.MeshPhongMaterial({color: 0xdddddd});	
+	var material = new THREE.MeshFaceMaterial( [
+		new THREE.MeshPhongMaterial( { color: args.color || 0xffffff, shading: THREE.SmoothShading, shininess: 5 } ), // front
+		new THREE.MeshPhongMaterial( { color: args.color || 0xffffff, shading: THREE.SmoothShading, shininess: 5 } ) // side
+	] );
+	/*
+	var material = new THREE.MeshFaceMaterial( [
+		new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xff0000, specular: 0x009900, shininess: 30, shading: THREE.SmoothShading } ), // front
+		new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xff0000, specular: 0x009900, shininess: 30, shading: THREE.SmoothShading } ) // side
+	] );
+	*/
 	
 	textMesh1 = new THREE.Mesh( textGeo, material );
 
