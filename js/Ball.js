@@ -30,14 +30,18 @@ function Ball(scene, args) {
 	
 	var collidableMeshList = args.collidableMeshList;
 	
-	var ballDirX = 1, ballDirY = 1, ballDirZ = 1, ballSpeed = 0.1;
+	var ballSpeed = 0.1;
+	
+	this.resetStartPosition = function(){
+		root.ballDirX = 1;
+		root.ballDirY = 1;
+		root.ballDirZ = -1;
+		root.ballSpeed = 0.1;
+	}
+	
+	this.resetStartPosition();
 	
 	scene.updatables.push(function(){
-
-		//root.ball.position.x += root.speed;
-		
-		//root.ball.position.y += ballDirY * ballSpeed; 
-		
 		
 		// Collision detection
 		/*
@@ -56,9 +60,9 @@ function Ball(scene, args) {
 			}
 		}	
 		*/
-		var newPosX = root.ball.position.x + (ballDirX * ballSpeed);
-		var newPosZ = root.ball.position.z + (ballDirZ * ballSpeed);
-		var newPosY = root.ball.position.y + (ballDirY * ballSpeed);
+		var newPosX = root.ball.position.x + (root.ballDirX * root.ballSpeed);
+		var newPosZ = root.ball.position.z + (root.ballDirZ * root.ballSpeed);
+		var newPosY = root.ball.position.y + (root.ballDirY * root.ballSpeed);
 		
 		var halfBoxHeight = (args.boxHeight / 2);
 		var halfBoxWidth = (args.boxWidth / 2);
@@ -67,29 +71,29 @@ function Ball(scene, args) {
 		// Keep in bounding box
 		if (newPosX < (halfBoxWidth * -1)) {
 			newPosX = (halfBoxWidth * -1);
-			ballDirX = -ballDirX;
+			root.ballDirX = -root.ballDirX;
 		}
 		else if (newPosX > halfBoxWidth) {
 			newPosX = halfBoxWidth;
-			ballDirX = -ballDirX;
+			root.ballDirX = -root.ballDirX;
 		}
 		
 		if (newPosZ < (halfBoxDepth * -1) + args.depthOffset) {
 			newPosZ = (halfBoxDepth * -1) + args.depthOffset;
-			ballDirZ = -ballDirZ;
+			root.ballDirZ = -root.ballDirZ;
 		}
 		else if (newPosZ > halfBoxDepth + args.depthOffset) {
 			newPosZ = halfBoxDepth + args.depthOffset;
-			ballDirZ = -ballDirZ;
+			root.ballDirZ = -root.ballDirZ;
 		}
 		
 		if (newPosY < (halfBoxHeight * -1)) {
 			newPosY = (halfBoxHeight * -1);
-			ballDirY = -ballDirY;
+			root.ballDirY = -root.ballDirY;
 		}
 		else if (newPosY > halfBoxHeight) {
 			newPosY = halfBoxHeight;
-			ballDirY = -ballDirY;
+			root.ballDirY = -root.ballDirY;
 		}
 		
 		root.ball.position.x = newPosX;
