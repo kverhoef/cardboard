@@ -60,31 +60,35 @@ function Ball(scene, args) {
 		var newPosZ = root.ball.position.z + (ballDirZ * ballSpeed);
 		var newPosY = root.ball.position.y + (ballDirY * ballSpeed);
 		
+		var halfBoxHeight = (args.boxHeight / 2);
+		var halfBoxWidth = (args.boxWidth / 2);
+		var halfBoxDepth = (args.boxDepth / 2)
+		
 		// Keep in bounding box
-		if (newPosX < -15) {
-			newPosX = -15;
+		if (newPosX < (halfBoxWidth * -1)) {
+			newPosX = (halfBoxWidth * -1);
 			ballDirX = -ballDirX;
 		}
-		else if (newPosX > 15) {
-			newPosX = 15;
+		else if (newPosX > halfBoxWidth) {
+			newPosX = halfBoxWidth;
 			ballDirX = -ballDirX;
 		}
 		
-		if (newPosZ < -15) {
-			newPosZ = -15;
+		if (newPosZ < (halfBoxDepth * -1) + args.depthOffset) {
+			newPosZ = (halfBoxDepth * -1) + args.depthOffset;
 			ballDirZ = -ballDirZ;
 		}
-		else if (newPosZ > 15) {
-			newPosZ = 15;
+		else if (newPosZ > halfBoxDepth + args.depthOffset) {
+			newPosZ = halfBoxDepth + args.depthOffset;
 			ballDirZ = -ballDirZ;
 		}
 		
-		if (newPosY < -5) {
-			newPosY = -5;
+		if (newPosY < (halfBoxHeight * -1)) {
+			newPosY = (halfBoxHeight * -1);
 			ballDirY = -ballDirY;
 		}
-		else if (newPosY > 8) {
-			newPosY = 8;
+		else if (newPosY > halfBoxHeight) {
+			newPosY = halfBoxHeight;
 			ballDirY = -ballDirY;
 		}
 		

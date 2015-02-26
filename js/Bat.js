@@ -34,12 +34,36 @@ function Bat(scene, args) {
 	scene.updatables.push(function(){
 
 		// view =  0.6 ] 0 [ -0.6
-		var orbitTheta = cardboard.orbitControls.theta
+		var orbitTheta = cardboard.orbitControls.theta;
+		var phi = cardboard.orbitControls.phi - 1.5;
 		
-		rectMesh.position.x = (orbitTheta * 15) * -1;
+		var movementSpeed = 15;
 		
-		var phi = cardboard.orbitControls.phi - 1.5
-		rectMesh.position.y = (phi * 15);
+		var newX = (orbitTheta * movementSpeed) * -1;
+		var newY = (phi * movementSpeed);
+		
+		// limit on max
+		var halfRectWidth = args.rectWidth / (2);
+		var halfRectHeight = args.rectLength / (2);
+		var halfBoxHeight = (args.boxHeight / 2);
+		var halfBoxWidth = (args.boxWidth / 2);
+		
+		if (newX > halfBoxWidth - halfRectWidth){
+			newX = halfBoxWidth - halfRectWidth;
+		}
+		else if (newX < (halfBoxWidth * -1) + halfRectWidth){
+			newX = (halfBoxWidth * -1) + halfRectWidth;
+		}
+		
+		if (newY > halfBoxHeight - halfRectHeight){
+			newY = halfBoxHeight - halfRectHeight;
+		}
+		else if (newY < (halfBoxHeight * -1) + halfRectHeight){
+			newY = (halfBoxHeight * -1) + halfRectHeight;
+		}
+		
+		rectMesh.position.x = newX;
+		rectMesh.position.y = newY;
 	});
 	
 	//scene.intersectables.push(this.children[0]);
