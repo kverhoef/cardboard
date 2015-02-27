@@ -24,6 +24,12 @@ function Ball(scene, args) {
     this.ball.position.y = 0;
     this.ball.position.z = -8;
 	
+	
+	// Shadow
+	this.ball.castShadow = true;
+	this.ball.receiveShadow = true;
+	this.castShadow = true;
+	
 	scene.add(this.ball);
 	
 	this.args = args;

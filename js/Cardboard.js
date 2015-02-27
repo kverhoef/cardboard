@@ -6,6 +6,8 @@ function Cardboard() {
     antialias: true
   });
   this.renderer.setSize(window.innerWidth, window.innerHeight);
+  this.renderer.shadowMapEnabled = true;
+
   
   this.scene = new THREE.Scene();
   this.effect = new THREE.StereoEffect(this.renderer);

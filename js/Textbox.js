@@ -7,7 +7,8 @@ function Textbox(rootThis, args) {
 	THREE.Object3D.call(this);
 
 	var text3d = createText(this, args);
-	text3d.receiveShadow = true;
+	text3d.receiveShadow = false;
+	text3d.castShadow = false;
 
 	text3d.computeBoundingBox();
 

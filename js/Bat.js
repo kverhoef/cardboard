@@ -19,7 +19,7 @@ function Bat(scene, args) {
 	var rectMesh = new THREE.Mesh(rectGeom, batMaterial);
 	
 	this.rectMesh = rectMesh;
-	
+	this.rectMesh.receiveShadow = true;
 	var centroid = getCentroid(rectMesh);
 	rectMesh.geometry.applyMatrix(new THREE.Matrix4().makeTranslation( -centroid.x, -centroid.y, -centroid.z ) );
 	
