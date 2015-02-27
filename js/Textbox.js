@@ -91,8 +91,8 @@ function createText(root, args) {
 	textGeo.computeVertexNormals();
 	
 	root.material = new THREE.MeshFaceMaterial( [
-		new THREE.MeshPhongMaterial( { color: args.color || 0xffffff, shading: THREE.SmoothShading, shininess: 5 } ), // front
-		new THREE.MeshPhongMaterial( { color: args.color || 0xffffff, shading: THREE.SmoothShading, shininess: 5 } ) // side
+		new THREE.MeshPhongMaterial( { color: args.color || 0xffffff, shading: THREE.SmoothShading, shininess: 5, transparent: args.transparent || false, opacity: args.opacity || 1 } ), // front
+		new THREE.MeshPhongMaterial( { color: args.color || 0xffffff, shading: THREE.SmoothShading, shininess: 5, transparent: args.transparent || false, opacity: args.opacity || 1 } ) // side
 	] );
 	/*
 	var material = new THREE.MeshFaceMaterial( [

@@ -24,7 +24,9 @@ function GameRoom(scene){
 			degree: 90,
 			size: 3,
 			verticalDegree: 0,
-			color: 0xFFFFFF
+			color: 0xFFFFFF,
+			transparent: true,
+			opacity: 0.6
 		});
 	}
 	
