@@ -69,9 +69,9 @@ function GameRoom(scene){
 	// light
 	
 	var light = new THREE.PointLight(0xffffff);
-    light.position.set(0,0,0);
+    light.position.set(0,0,40 * -1);
     scene.add(light);
-	light.intensity = 0.7;
+	light.intensity = 1;
 	/*
 	
 	
@@ -200,7 +200,7 @@ function createWallRight(boxHeight, boxDepth, boxWidth, depthOffset, roomColor){
 function createWallFront(boxHeight, boxDepth, boxWidth, depthOffset, roomColor){
 	var wall = new THREE.Mesh(
 			new THREE.BoxGeometry(boxWidth, boxHeight, 1),
-			new THREE.MeshPhongMaterial( { color: 0x444444, overdraw: 0.5 })
+			new THREE.MeshPhongMaterial( { color: roomColor, overdraw: 0.5 })
 		
 	);
 	
@@ -214,13 +214,12 @@ function createWallFront(boxHeight, boxDepth, boxWidth, depthOffset, roomColor){
 function createWallBack(boxHeight, boxDepth, boxWidth, depthOffset, roomColor){
 		var wall = new THREE.Mesh(
 			new THREE.BoxGeometry(boxWidth, boxHeight, 1),
-			new THREE.MeshPhongMaterial( { color: roomColor, overdraw: 0.5 })
+			new THREE.MeshPhongMaterial( { color: 0x444444, overdraw: 0.5 })
 	);
 	wall.position.x = 0;
 	wall.position.z = (boxDepth / 2) + depthOffset;
 	wall.position.y = 0;
 	wall.receiveShadow = true;
-
 
 	return wall;
 }
