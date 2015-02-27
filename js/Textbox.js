@@ -6,7 +6,7 @@ Textbox.prototype.constructor = Textbox;
 function Textbox(rootThis, args) {
 	THREE.Object3D.call(this);
 
-	var text3d = createText(args);
+	var text3d = createText(this, args);
 	text3d.receiveShadow = true;
 
 	text3d.computeBoundingBox();
@@ -14,26 +14,36 @@ function Textbox(rootThis, args) {
 	var phi = (args.verticalDegree)*Math.PI/180;
     var theta = (args.degree-180)*Math.PI/180;
 	
-	var centroid = getCentroid( textMesh1 )
+	var centroid = getCentroid( this.textMesh );
 	
-	textMesh1.position.x = (-args.radius * Math.cos(phi) * Math.cos(theta));
-    textMesh1.position.y = args.radius * Math.sin(phi);
-    textMesh1.position.z = (args.radius * Math.cos(phi) * Math.sin(theta));
+	this.textMesh.position.x = (-args.radius * Math.cos(phi) * Math.cos(theta));
+    this.textMesh.position.y = args.radius * Math.sin(phi);
+    this.textMesh.position.z = (args.radius * Math.cos(phi) * Math.sin(theta));
 	
 	// Centreer de text
-	var center = getCentroid( textMesh1 );
-	textMesh1.geometry.applyMatrix(new THREE.Matrix4().makeTranslation( -centroid.x, -centroid.y, -centroid.z ) );
+	var center = getCentroid( this.textMesh );
+	this.textMesh.geometry.applyMatrix(new THREE.Matrix4().makeTranslation( -centroid.x, -centroid.y, -centroid.z ) );
 	
-	var v = cardboard.camera.position
+	var v = cardboard.camera.position;
 	
 	
-	textMesh1.lookAt(cardboard.camera.position);
+	this.textMesh.lookAt(cardboard.camera.position);
 
-	rootThis.add(textMesh1);
+	rootThis.add(this.textMesh);
+	
+	var text = this;
 	
 	this.remove = function(){
 		// Remove from scene
-		rootThis.remove(text);
+		rootThis.remove(this);
+		
+		rootThis.remove(text.textMesh);
+		text.textMesh.geometry.dispose();
+		
+		//text.textMesh.dispose(); 
+		//geometry.dispose();
+		//material.dispose();
+		//texture.dispose();
 	}
 }
 
@@ -41,7 +51,7 @@ function getCentroid( mesh ) {
 
     mesh.geometry.computeBoundingBox();
     var boundingBox = mesh.geometry.boundingBox;
-	console.log(boundingBox)
+
     var x0 = boundingBox.min.x;
 	var x1 = boundingBox.max.x;
 	var y0 = boundingBox.min.y;
@@ -61,7 +71,7 @@ function getCentroid( mesh ) {
 
 }
 
-function createText(args) {
+function createText(root, args) {
 
 	var textGeo = new THREE.TextGeometry( args.text, {
 		size: args.size || 3,
@@ -74,11 +84,13 @@ function createText(args) {
 		material: 0,
 		extrudeMaterial: 1
 	});
+	
+	root.textGeo = textGeo;
 
 	textGeo.computeBoundingBox();
 	textGeo.computeVertexNormals();
 	
-	var material = new THREE.MeshFaceMaterial( [
+	root.material = new THREE.MeshFaceMaterial( [
 		new THREE.MeshPhongMaterial( { color: args.color || 0xffffff, shading: THREE.SmoothShading, shininess: 5 } ), // front
 		new THREE.MeshPhongMaterial( { color: args.color || 0xffffff, shading: THREE.SmoothShading, shininess: 5 } ) // side
 	] );
@@ -89,7 +101,7 @@ function createText(args) {
 	] );
 	*/
 	
-	textMesh1 = new THREE.Mesh( textGeo, material );
+	root.textMesh = new THREE.Mesh( textGeo, root.material );
 
 	return textGeo;
 

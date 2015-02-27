@@ -28,13 +28,14 @@ function Room3(rootThis){
 		});
 	}
 	
-	this.smallText("We are convinced that progress requires a blend of", 176);
-	this.smallText("domain knowledge and expertise. You know your ", 182);
-	this.smallText("business and we know how information technology can be ", 188);
-	this.smallText("used. We focus on creating value by cooperating with ", 194);
-	this.smallText("clients, partners and other stakeholders in value networks. ", 200);
-	this.smallText("Our worlds converse where we identify, create and seize ", 206);
-	this.smallText("opportunities together.", 212);
+	this.smallText("The open source principle innovates and delivers value ", 176);
+	this.smallText("through co-creation. Sharing simply makes economic ", 182);
+	this.smallText("sense. At Luminis we actively support and contribute to the", 188);
+	this.smallText("open source developer community and engage in joint R&D", 194);
+	this.smallText("with our customers. The exchange of knowledge and ideas", 200);
+	this.smallText("through our publications, training programmes and", 206);
+	this.smallText("contributions to international conferences are an ongoing", 212);
+	this.smallText("source of inspiration.", 218);
 	
 	this.photoSphere = new PhotoSphere(rootThis, 'images/small.jpg');
 	

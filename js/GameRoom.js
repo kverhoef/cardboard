@@ -9,15 +9,36 @@ function GameRoom(scene){
 	var boxWidth = 30;
 	var boxDepth = 60;
 	var depthOffset = -20;
+	var batLine = -8;
 	
-	this.bat = new Bat(scene, {
-		rectLength: 5, 
-		rectWidth: 5,
-		boxHeight: boxHeight,
-		boxWidth: boxWidth,
-		boxDepth: boxDepth,
-		depthOffset: depthOffset
-	})
+	this.score = 0;
+	
+	this.showScore = function(){
+		if (room.scoreText){
+			room.scoreText.remove();
+		}
+	
+		room.scoreText = new Textbox(scene, {
+			text: ""+room.score,
+			radius: 4 * SCALE,
+			degree: 90,
+			size: 3,
+			verticalDegree: 0,
+			color: 0xFFFFFF
+		});
+	}
+	
+	this.incrementScore = function() {
+		room.score += 1;
+		room.showScore();
+	};
+	
+	this.resetScore = function() {
+		room.score = 0;
+		room.showScore();
+	};
+	this.showScore();
+	
 	
 	// Geometry: floor
 
@@ -55,14 +76,32 @@ function GameRoom(scene){
 	var wallSouth = createWallRight(boxHeight, boxDepth, boxWidth, depthOffset);
 	scene.add(wallSouth);
 	
-	this.ball = new Ball(scene, {
-		collidableMeshList: [wallNorth, wallEast, wallWest, wallSouth],
+	var batLength = 10;
+	var batWidth = 10;
+	
+	this.bat = new Bat(scene, {
+		rectLength: batLength, 
+		rectWidth: batWidth,
 		boxHeight: boxHeight,
 		boxWidth: boxWidth,
 		boxDepth: boxDepth,
-		depthOffset: depthOffset
-	})
-
+		depthOffset: depthOffset,
+		batLine: batLine
+	});
+	
+	this.ball = new Ball(scene, {
+		collidableMeshList: [wallNorth, wallEast, wallWest, wallSouth],
+		bat: this.bat,
+		boxHeight: boxHeight,
+		boxWidth: boxWidth,
+		boxDepth: boxDepth,
+		depthOffset: depthOffset,
+		batLine: batLine,
+		batLength: batLength, 
+		batWidth: batWidth,
+		room: room
+	});
+	
 }
 
 function createWallLeft(boxHeight, boxDepth, boxWidth, depthOffset){

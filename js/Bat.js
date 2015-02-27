@@ -25,7 +25,7 @@ function Bat(scene, args) {
 	
 	rectMesh.position.x = 0;
     rectMesh.position.y = 0;
-    rectMesh.position.z = -8;
+    rectMesh.position.z = args.batLine;
 	
 	this.add(rectMesh);
 	

@@ -4,7 +4,6 @@ TextLights.prototype.constructor = TextLights;
 function TextLights(scene, args) {
 	THREE.Object3D.call(this);
 
-	
 	this.dirLight = new THREE.DirectionalLight( 0xffffff, 0.125 );
 	this.dirLight.position.set( 0, 0, 0 )
 	scene.add( this.dirLight );

@@ -26,7 +26,9 @@ function Ball(scene, args) {
 	
 	scene.add(this.ball);
 	
+	this.args = args;
 	var root = this;
+	
 	
 	var collidableMeshList = args.collidableMeshList;
 	
@@ -36,7 +38,7 @@ function Ball(scene, args) {
 		root.ballDirX = 1;
 		root.ballDirY = 1;
 		root.ballDirZ = -1;
-		root.ballSpeed = 0.1;
+		root.ballSpeed = 0.2;
 	}
 	
 	this.resetStartPosition();
@@ -94,6 +96,33 @@ function Ball(scene, args) {
 		else if (newPosY > halfBoxHeight) {
 			newPosY = halfBoxHeight;
 			root.ballDirY = -root.ballDirY;
+		}
+		
+		// bat line
+		if (newPosZ > args.batLine) {
+			
+			var bat = args.bat.rectMesh
+		
+			// check collision
+			
+			if (
+				root.ball.position.x > bat.position.x - (root.args.batWidth / 2) &&
+				root.ball.position.x < bat.position.x + (root.args.batWidth / 2) &&
+				root.ball.position.y > bat.position.y - (root.args.batLength / 2) &&
+				root.ball.position.y < bat.position.y + (root.args.batLength / 2)
+			){
+				// bounce back
+				
+				root.ballDirZ = -root.ballDirZ;
+				console.log("hit");
+				args.room.incrementScore();
+			}
+			else {
+				console.log("reset");
+				root.resetStartPosition();
+				args.room.resetScore();
+			}
+			
 		}
 		
 		root.ball.position.x = newPosX;
