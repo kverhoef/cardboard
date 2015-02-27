@@ -42,11 +42,13 @@ function GameRoom(scene){
 	this.showScore();
 	
 	
+	var roomColor = 0xFFFFFF;
+	
 	// Geometry: floor
 
 	var floor = new THREE.Mesh(
 			new THREE.BoxGeometry(boxWidth, 1, boxDepth),
-			new THREE.MeshPhongMaterial( { color: 0xFF69B4, overdraw: 0.5 })
+			new THREE.MeshPhongMaterial( { color: roomColor, overdraw: 0.5 })
 	);
 	floor.position.y = (boxHeight / 2) * -1;
 	floor.position.z = depthOffset;
@@ -57,7 +59,7 @@ function GameRoom(scene){
 		
 	var ceiling = new THREE.Mesh(
 			new THREE.BoxGeometry(boxWidth, 1, boxDepth),
-			new THREE.MeshPhongMaterial( { color: 0xFF69B4, overdraw: 0.5 })
+			new THREE.MeshPhongMaterial( { color: roomColor, overdraw: 0.5 })
 	);
 	ceiling.position.y = (boxHeight / 2);
 	ceiling.position.z = depthOffset;
@@ -68,14 +70,16 @@ function GameRoom(scene){
     light.position.set(0,0,0);
     scene.add(light);
 	light.intensity = 0.7;
+	
+	
 
-	var wallNorth = createWallLeft(boxHeight, boxDepth, boxWidth, depthOffset);
+	var wallNorth = createWallLeft(boxHeight, boxDepth, boxWidth, depthOffset, roomColor);
 	scene.add(wallNorth);
-	var wallEast = createWallFront(boxHeight, boxDepth, boxWidth, depthOffset);
+	var wallEast = createWallFront(boxHeight, boxDepth, boxWidth, depthOffset, roomColor);
 	scene.add(wallEast);
-	var wallWest = createWallBack(boxHeight, boxDepth, boxWidth, depthOffset);
+	var wallWest = createWallBack(boxHeight, boxDepth, boxWidth, depthOffset, roomColor);
 	scene.add(wallWest);
-	var wallSouth = createWallRight(boxHeight, boxDepth, boxWidth, depthOffset);
+	var wallSouth = createWallRight(boxHeight, boxDepth, boxWidth, depthOffset, roomColor);
 	scene.add(wallSouth);
 	
 	var batLength = 10;
@@ -88,7 +92,8 @@ function GameRoom(scene){
 		boxWidth: boxWidth,
 		boxDepth: boxDepth,
 		depthOffset: depthOffset,
-		batLine: batLine
+		batLine: batLine,
+		color: 0xD43001
 	});
 	
 	this.ball = new Ball(scene, {
@@ -106,10 +111,10 @@ function GameRoom(scene){
 	
 }
 
-function createWallLeft(boxHeight, boxDepth, boxWidth, depthOffset){
+function createWallLeft(boxHeight, boxDepth, boxWidth, depthOffset, roomColor){
 	var wall = new THREE.Mesh(
 			new THREE.BoxGeometry(1, boxHeight, boxDepth),
-			new THREE.MeshPhongMaterial( { color: 0xFFFFF, overdraw: 0.5 })
+			new THREE.MeshPhongMaterial( { color: roomColor, overdraw: 0.5 })
 	);
 	wall.position.x = ((boxWidth / 2) * -1);
 	wall.position.z = depthOffset;
@@ -118,10 +123,10 @@ function createWallLeft(boxHeight, boxDepth, boxWidth, depthOffset){
 	return wall;
 }
 
-function createWallRight(boxHeight, boxDepth, boxWidth, depthOffset){
+function createWallRight(boxHeight, boxDepth, boxWidth, depthOffset, roomColor){
 		var wall = new THREE.Mesh(
 			new THREE.BoxGeometry(1, boxHeight, boxDepth),
-			new THREE.MeshPhongMaterial( { color: 0xFF69B4, overdraw: 0.5 })
+			new THREE.MeshPhongMaterial( { color: roomColor, overdraw: 0.5 })
 	);
 	wall.position.x = (boxWidth / 2);
 	wall.position.z = depthOffset;
@@ -130,10 +135,10 @@ function createWallRight(boxHeight, boxDepth, boxWidth, depthOffset){
 	return wall;
 }
 
-function createWallFront(boxHeight, boxDepth, boxWidth, depthOffset){
+function createWallFront(boxHeight, boxDepth, boxWidth, depthOffset, roomColor){
 	var wall = new THREE.Mesh(
 			new THREE.BoxGeometry(boxWidth, boxHeight, 1),
-			new THREE.MeshPhongMaterial( { color: 0xFF00FF, overdraw: 0.5 })
+			new THREE.MeshPhongMaterial( { color: roomColor, overdraw: 0.5 })
 		
 	);
 	
@@ -144,10 +149,10 @@ function createWallFront(boxHeight, boxDepth, boxWidth, depthOffset){
 	return wall;
 }
 
-function createWallBack(boxHeight, boxDepth, boxWidth, depthOffset){
+function createWallBack(boxHeight, boxDepth, boxWidth, depthOffset, roomColor){
 		var wall = new THREE.Mesh(
 			new THREE.BoxGeometry(boxWidth, boxHeight, 1),
-			new THREE.MeshPhongMaterial( { color: 0x00FF00, overdraw: 0.5 })
+			new THREE.MeshPhongMaterial( { color: roomColor, overdraw: 0.5 })
 	);
 	wall.position.x = 0;
 	wall.position.z = (boxDepth / 2) + depthOffset;

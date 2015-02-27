@@ -13,7 +13,7 @@ function Bat(scene, args) {
 	
 	this.rectShape = rectShape;
 	
-	var batMaterial = new THREE.MeshLambertMaterial({color: 0xD43001}); 
+	var batMaterial = new THREE.MeshLambertMaterial({color: args.color, transparent: true, opacity: 0.6 }); 
 	
 	var rectGeom = new THREE.ShapeGeometry( rectShape ); 
 	var rectMesh = new THREE.Mesh(rectGeom, batMaterial);
