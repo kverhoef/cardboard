@@ -41,7 +41,21 @@ function Room4(rootThis){
 	this.smallText("in open innovation. We proactively develop modular,", 200);
 	this.smallText("reusable software components.", 206);
 	
-	this.photoSphere = new PhotoSphere(rootThis, 'images/small.jpg');
+	this.photoSphere = new PhotoSphere(rootThis, 'images/small.jpg', {  depth: 110 });
+	
+	var sphere = new THREE.Mesh(
+		new THREE.SphereGeometry(100, 32, 32),
+		new THREE.MeshBasicMaterial({
+			color: 0xFFFFFF, transparent: true, opacity: 0.25
+		})
+	);
+	
+	// Invert the mesh inside-out
+	sphere.scale.x = -1;
+	this.sphere = sphere;
+	rootThis.add(sphere);
+	
+	this.photoSphere2 = new PhotoSphere(rootThis, 'images/cloud.png', {  transparent: true});
 	
 	this.remove = function(){
 		this.photoSphere.remove();

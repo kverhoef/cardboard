@@ -1,11 +1,13 @@
 PhotoSphere.prototype = Object.create(THREE.Object3D.prototype);
 PhotoSphere.prototype.constructor = PhotoSphere;
 
-function PhotoSphere(rootThis, textureUrl) {
+function PhotoSphere(rootThis, textureUrl, args) {
+	args = {} || args;
+
 	var sphere = new THREE.Mesh(
-		new THREE.SphereGeometry(100, 32, 32),
+		new THREE.SphereGeometry(args.depth || 100, 32, 32),
 		new THREE.MeshBasicMaterial({
-			map: THREE.ImageUtils.loadTexture(textureUrl)
+			map: THREE.ImageUtils.loadTexture(textureUrl), transparent: args.transparent || false, opacity: 0.5
 		})
 	);
 	

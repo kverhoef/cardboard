@@ -9,8 +9,19 @@ function MainController() {
 	// Rotate
 	//scene.rotation.y = 1000;
 	
+	// STATS
+	var stats = new Stats();
+	stats.domElement.style.position = 'absolute';
+	stats.domElement.style.bottom = '0px';
+	stats.domElement.style.zIndex = 100;
+	document.getElementById('scene').appendChild( stats.domElement );
+	
+	scene.updatables.push(function(){
+		stats.update();
+	});
+	
 	// Start the first room
-	var room1 = new GameRoom(scene);
+	var room1 = new Room5(scene);
 	//var room1 = new GameRoom(scene);
 	scene.add(room1);
 	
