@@ -11,7 +11,6 @@ function Ball(scene, args) {
 	this.speed = 0.1;
  
 	// create the sphere's material
-	// var sphereMaterial = new THREE.MeshPhongMaterial({color: 0xD43001, shading: THREE.SmoothShading}); 
 	var sphereMaterial = new THREE.MeshLambertMaterial({color: 0xD43001}); 
 	
 	this.ball = new THREE.Mesh(
@@ -44,7 +43,7 @@ function Ball(scene, args) {
 		root.ballDirX = 1;
 		root.ballDirY = 1;
 		root.ballDirZ = -1;
-		root.ballSpeed = 0.2;
+		root.ballSpeed = 0.1;
 	}
 	
 	this.resetStartPosition();
@@ -61,23 +60,6 @@ function Ball(scene, args) {
 	
 	scene.updatables.push(function(){
 		
-		// Collision detection
-		/*
-		var originPoint = root.ball.position.clone();
-		for (var vertexIndex = 0; vertexIndex < root.ball.geometry.vertices.length; vertexIndex++)
-		{		
-			var localVertex = root.ball.geometry.vertices[vertexIndex].clone();
-			var globalVertex = localVertex.applyMatrix4( root.ball.matrix );
-			var directionVector = globalVertex.sub( root.ball.position );
-			
-			var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
-			var collisionResults = ray.intersectObjects( collidableMeshList );
-			if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() ) {
-				console.log("Hit")
-				ballDirX = -ballDirX;
-			}
-		}	
-		*/
 		var newPosX = root.ball.position.x + (root.ballDirX * root.ballSpeed);
 		var newPosZ = root.ball.position.z + (root.ballDirZ * root.ballSpeed);
 		var newPosY = root.ball.position.y + (root.ballDirY * root.ballSpeed);
