@@ -14,7 +14,7 @@ function GameRoom(scene){
 	this.bestScore = 0;
 	this.score = 0;
 	
-	this.textbox = new Textbox(scene, {
+	this.authorTextbox = new Textbox(scene, {
 		text: "Author: Kevin Verhoef",
 		radius: 3 * SCALE,
 		degree: 270,
@@ -26,6 +26,24 @@ function GameRoom(scene){
 		material: new THREE.MeshBasicMaterial({ color: 0x000000, shading: THREE.SmoothShading } ),
 		height: 0.01
 	});
+	
+	this.showStartButton = function(){
+	
+		THREE.ImageUtils.loadTexture('images/start.png', undefined, function(texture){
+			room.detail = new DetailImage(scene, texture, {
+				degree: 90,
+				verticalDegree: 0,
+				radius: 3 * SCALE,
+				onFocus: function(){
+					this.remove();
+					room.addBat();
+					room.addBall();
+					
+				}
+			});
+		});
+	}
+	this.showStartButton();
 	
 	this.showBestscore = function(){
 		if (room.bestScoreText){
@@ -72,12 +90,18 @@ function GameRoom(scene){
 	};
 	
 	this.resetScore = function() {
+		// Remove allements
+		room.ball.remove();
+		room.bat.remove();
+		this.showStartButton();
+	
 		if (room.score > room.bestScore){
 			room.bestScore = room.score;
 		}
 		room.score = 0;
 		this.showBestscore();
 		room.showScore();
+		
 	};
 	this.showScore();
 	
@@ -112,22 +136,6 @@ function GameRoom(scene){
     light.position.set(0,0,40 * -1);
     scene.add(light);
 	light.intensity = 1;
-	/*
-	
-	
-	var ambient	= new THREE.AmbientLight( 0x404040  );
-	//ambient.intensity = 0.5;
-	scene.add( ambient );
-	*/
-	/*
-	var light2	= new THREE.DirectionalLight( 0x4444cc, 2 );
-	light2.position.set( 0, 0, 0 ).normalize();
-	light2.castShadow = true;
-	light2.shadowDarkness = 0.5;
-	light2.shadowCameraVisible	= true;
-	scene.add( light2 );
-	
-	*/
 	
 	var spotLight	= new THREE.SpotLight( 0xffffff );
 	spotLight.position.set( 0, 0, 50 * -1 );
@@ -135,45 +143,7 @@ function GameRoom(scene){
 	spotLight.shadowCameraNear	= 0.01;		
 	spotLight.castShadow		= true;
 	spotLight.shadowDarkness	= 1;
-//	spotLight.shadowCameraVisible	= true;
-
-	// spotLight.shadowMapWidth	= 1024;
-	 //spotLight.shadowMapHeight	= 1024;
 	scene.add( spotLight );	
-	
-	/*
-	var spotLight	= new THREE.SpotLight( 0xffffff );
-	spotLight.position.set( 0, 0, 10 );
-	spotLight.target.position.set( 0, 0, 50 * -1 );
-	spotLight.shadowCameraNear	= 0.01;		
-	spotLight.castShadow		= true;
-	spotLight.shadowDarkness	= 1;
-	spotLight.shadowCameraVisible	= true;
-// console.dir(spotLight)
-	// spotLight.shadowMapWidth	= 1024;
-	 //spotLight.shadowMapHeight	= 1024;
-	scene.add( spotLight );	
-	
-	var spotLight	= new THREE.SpotLight( 0xffffff );
-	spotLight.position.set( 0, 15, 0 );
-	spotLight.target.position.set( 0, -15, 0 );
-	spotLight.shadowCameraNear	= 0.01;		
-	spotLight.castShadow		= true;
-	spotLight.shadowDarkness	= 1;
-	spotLight.shadowCameraVisible	= true;
-	spotLight.intensity = 0.1;
-	scene.add( spotLight );	
-	
-	var spotLight2	= new THREE.SpotLight( 0xffffff );
-	spotLight2.position.set( 0, 15, -30 );
-	spotLight2.target.position.set( 0, -15, -60 );
-	spotLight2.shadowCameraNear	= 0.01;		
-	spotLight2.castShadow		= true;
-	spotLight2.shadowDarkness	= 1;
-	spotLight2.shadowCameraVisible	= true;
-	spotLight2.intensity = 0.1;
-	scene.add( spotLight2 );	
-	*/
 
 	var wallNorth = createWallLeft(boxHeight, boxDepth, boxWidth, depthOffset, roomColor);
 	scene.add(wallNorth);
@@ -187,30 +157,35 @@ function GameRoom(scene){
 	var batLength = 10;
 	var batWidth = 10;
 	
-	this.bat = new Bat(scene, {
-		rectLength: batLength, 
-		rectWidth: batWidth,
-		boxHeight: boxHeight,
-		boxWidth: boxWidth,
-		boxDepth: boxDepth,
-		depthOffset: depthOffset,
-		batLine: batLine,
-		color: 0xD43001
-	});
+	this.addBat = function(){
 	
-	this.ball = new Ball(scene, {
-		collidableMeshList: [wallNorth, wallEast, wallWest, wallSouth],
-		bat: this.bat,
-		boxHeight: boxHeight,
-		boxWidth: boxWidth,
-		boxDepth: boxDepth,
-		depthOffset: depthOffset,
-		batLine: batLine,
-		batLength: batLength, 
-		batWidth: batWidth,
-		room: room
-	});
+		this.bat = new Bat(scene, {
+			rectLength: batLength, 
+			rectWidth: batWidth,
+			boxHeight: boxHeight,
+			boxWidth: boxWidth,
+			boxDepth: boxDepth,
+			depthOffset: depthOffset,
+			batLine: batLine,
+			color: 0xD43001
+		});
 	
+	};
+	
+	this.addBall = function(){
+		this.ball = new Ball(scene, {
+			collidableMeshList: [wallNorth, wallEast, wallWest, wallSouth],
+			bat: this.bat,
+			boxHeight: boxHeight,
+			boxWidth: boxWidth,
+			boxDepth: boxDepth,
+			depthOffset: depthOffset,
+			batLine: batLine,
+			batLength: batLength, 
+			batWidth: batWidth,
+			room: room
+		});
+	}
 }
 
 function createWallLeft(boxHeight, boxDepth, boxWidth, depthOffset, roomColor){

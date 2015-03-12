@@ -66,11 +66,7 @@ function Bat(scene, args) {
 		rectMesh.position.y = newY;
 	});
 	
-	//scene.intersectables.push(this.children[0]);
-	
 	this.remove = function(){
-		// Remove from intersectables
-		scene.intersectables.splice($.inArray(this, scene.intersectables),1);
 		// Remove from scene
 		scene.remove(this);
 	}

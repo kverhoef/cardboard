@@ -49,6 +49,16 @@ function Ball(scene, args) {
 	
 	this.resetStartPosition();
 	
+	this.remove = function(){
+		// Remove from updatables
+		scene.updatables.splice($.inArray(this, scene.updatables),1);
+	
+		scene.remove(this.ball);
+	
+		// Remove from scene
+		scene.remove(this);
+	}
+	
 	scene.updatables.push(function(){
 		
 		// Collision detection

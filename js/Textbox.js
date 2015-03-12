@@ -3,7 +3,7 @@ Textbox.prototype.constructor = Textbox;
 
 
 
-function Textbox(rootThis, args) {
+function Textbox(scene, args) {
 	THREE.Object3D.call(this);
 
 	var text3d = createText(this, args);
@@ -30,15 +30,15 @@ function Textbox(rootThis, args) {
 	
 	this.textMesh.lookAt(cardboard.camera.position);
 
-	rootThis.add(this.textMesh);
+	scene.add(this.textMesh);
 	
 	var text = this;
 	
 	this.remove = function(){
 		// Remove from scene
-		rootThis.remove(this);
+		scene.remove(this);
 		
-		rootThis.remove(text.textMesh);
+		scene.remove(text.textMesh);
 		text.textMesh.geometry.dispose();
 		
 		//text.textMesh.dispose(); 
@@ -46,6 +46,7 @@ function Textbox(rootThis, args) {
 		//material.dispose();
 		//texture.dispose();
 	}
+	
 }
 
 function getCentroid( mesh ) {

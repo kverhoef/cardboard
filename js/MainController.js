@@ -93,10 +93,10 @@ MainController.prototype.findIntersections = function() {
 					if (this.selected.ttl <= 0) {
 						p = p * 100;
 						cursor.scale.set(p, p, p);
-					
+						
 						// Fire the onFocus event let the object decide the action
 						this.selected.obj.parent.onFocus();
-						this.selected = null
+						this.selected = null;
 					}
 				
 				}
