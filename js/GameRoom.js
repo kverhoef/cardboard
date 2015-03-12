@@ -13,6 +13,19 @@ function GameRoom(scene){
 	
 	this.score = 0;
 	
+	this.textbox = new Textbox(scene, {
+		text: "Author: Kevin Verhoef",
+		radius: 3 * SCALE,
+		degree: 270,
+		verticalDegree: 0,
+		size: 1.5,
+		color: 0xFFFFFF,
+		bevelEnabled: false,
+		receiveShadow: false,
+		material: new THREE.MeshBasicMaterial({ color: 0x000000, shading: THREE.SmoothShading } ),
+		height: 0.01
+	});
+	
 	this.showScore = function(){
 		if (room.scoreText){
 			room.scoreText.remove();
