@@ -11,6 +11,7 @@ function GameRoom(scene){
 	var depthOffset = -20;
 	var batLine = -8;
 	
+	this.bestScore = 0;
 	this.score = 0;
 	
 	this.textbox = new Textbox(scene, {
@@ -18,13 +19,35 @@ function GameRoom(scene){
 		radius: 3 * SCALE,
 		degree: 270,
 		verticalDegree: 0,
-		size: 1.5,
+		size: 1.0,
 		color: 0xFFFFFF,
 		bevelEnabled: false,
 		receiveShadow: false,
 		material: new THREE.MeshBasicMaterial({ color: 0x000000, shading: THREE.SmoothShading } ),
 		height: 0.01
 	});
+	
+	this.showBestscore = function(){
+		if (room.bestScoreText){
+			room.bestScoreText.remove();
+		}
+	
+		room.bestScoreText = new Textbox(scene, {
+			text: "Best score: " + room.bestScore,
+			radius: 3 * SCALE,
+			degree: 270,
+			verticalDegree: 0,
+			size: 1.5,
+			color: 0xFFFFFF,
+			bevelEnabled: false,
+			receiveShadow: false,
+			material: new THREE.MeshBasicMaterial({ color: 0x000000, shading: THREE.SmoothShading } ),
+			height: 0.01
+		});
+		// Move it up a bit
+		room.bestScoreText.textMesh.position.y += 3;
+	}
+	this.showBestscore();
 	
 	this.showScore = function(){
 		if (room.scoreText){
@@ -49,7 +72,11 @@ function GameRoom(scene){
 	};
 	
 	this.resetScore = function() {
+		if (room.score > room.bestScore){
+			room.bestScore = room.score;
+		}
 		room.score = 0;
+		this.showBestscore();
 		room.showScore();
 	};
 	this.showScore();
