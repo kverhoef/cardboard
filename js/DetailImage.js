@@ -7,7 +7,7 @@ function DetailImage(rootThis, texture, args) {
 	THREE.Object3D.call(this);
 
 	// Create the object
-	var geometry = new THREE.PlaneGeometry(texture.image.width / args.scale || 100, texture.image.height / args.scale || 100);
+	var geometry = new THREE.PlaneBufferGeometry(texture.image.width / args.scale || 100, texture.image.height / args.scale || 100);
 
 	var material = new THREE.MeshBasicMaterial({
 		map: texture,

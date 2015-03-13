@@ -10,20 +10,11 @@ function Room5(scene){
 	});
 	
 	// parts
-	THREE.ImageUtils.loadTexture('images/part1.png', undefined, function(texture){
-		room.detail = new DetailImage(scene, texture, {
-			degree: 0,
-			verticalDegree: 0,
-			radius: 10 * SCALE,
-			onFocus: function(){
-				this.remove();	
-				scene.addPart(1);
-			}
-		});
-	});
+	
 	
 	THREE.ImageUtils.loadTexture('images/part2.png', undefined, function(texture){
 		room.detail = new DetailImage(scene, texture, {
+			scale: 20,
 			degree: 30,
 			verticalDegree: 0,
 			radius: 10 * SCALE,
@@ -36,6 +27,7 @@ function Room5(scene){
 	
 	THREE.ImageUtils.loadTexture('images/part3.png', undefined, function(texture){
 		room.detail = new DetailImage(scene, texture, {
+			scale: 20,
 			degree: 60,
 			verticalDegree: 0,
 			radius: 10 * SCALE,
@@ -48,6 +40,7 @@ function Room5(scene){
 	
 	THREE.ImageUtils.loadTexture('images/part4.png', undefined, function(texture){
 		room.detail = new DetailImage(scene, texture, {
+			scale: 20,
 			degree: 90,
 			verticalDegree: 0,
 			radius: 10 * SCALE,
@@ -60,6 +53,7 @@ function Room5(scene){
 	
 	THREE.ImageUtils.loadTexture('images/part5.png', undefined, function(texture){
 		room.detail = new DetailImage(scene, texture, {
+			scale: 20,
 			degree: 120,
 			verticalDegree: 0,
 			radius: 10 * SCALE,

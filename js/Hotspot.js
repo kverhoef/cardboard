@@ -34,7 +34,7 @@ function Hotspot(rootThis, args) {
 	
 	this.remove = function(){
 		// Remove from intersectables
-		rootThis.intersectables.splice($.inArray(this, rootThis.intersectables),1);
+		rootThis.intersectables.splice($.inArray(this.children[0], rootThis.intersectables),1);
 		// Remove from scene
 		rootThis.remove(this);
 	}

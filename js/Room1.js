@@ -9,23 +9,29 @@ function Room1(scene){
 
 	});
 	
+	var textColor = 0x70C6F4;
+	
+	this.textBoxes = [];
+	
 	this.textbox = new Textbox(scene, {
 		text: "We focus on value",
 		radius: 5 * SCALE,
 		degree: 50,
 		verticalDegree: 165,
-		color: 0x70C6F4
+		color: textColor
 	});
 	
 	this.smallText = function(text, verticalDegree){
-		return new Textbox(scene, {
+		var textbox = new Textbox(scene, {
 			text: text,
 			radius: 5 * SCALE,
 			degree: 50,
 			verticalDegree: verticalDegree,
-			color: 0x70C6F4,
+			color: textColor,
 			size: 1
 		});
+		this.textBoxes.push(textbox);
+		return textbox;
 	}
 	
 	this.smallText("We are convinced that progress requires a blend of", 176);
@@ -68,7 +74,7 @@ function Room1(scene){
 			onFocus: function(){
 					
 				// remove self
-				this.remove();	
+				this.remove();
 				
 				THREE.ImageUtils.loadTexture('images/IMG_20150109_121939.jpg', undefined, function(texture){
 					room.detail = new DetailImage(scene, texture, {
@@ -88,12 +94,40 @@ function Room1(scene){
 	};
 	this.createComputerHotspot();
 	
+	// Part 1 
 	
+	if (!scene.hasPart(1)){
+	
+		THREE.ImageUtils.loadTexture('images/part1.png', undefined, function(texture){
+			room.part1 = new DetailImage(scene, texture, {
+				scale: 10,
+				degree: 0,
+				verticalDegree: 45,
+				radius: 10 * SCALE,
+				onFocus: function(){
+					this.remove();	
+					scene.addPart(1);
+				}
+			});
+		});
+		
+	}
 	this.remove = function(){
 		this.photoSphere.remove();
 		this.computerHotspot.remove();
 		this.doorHotspot.remove();
 		this.textbox.remove();
+		
+		this.textLights.remove();
+		
+		for (var i=0;i<this.textBoxes.length;i++){
+			this.textBoxes[i].remove();
+		}
+		
+		// part
+		if (room.part1 != undefined){
+			room.part1.remove();
+		}
 		
 		// remove self
 		scene.removeRoom(this);

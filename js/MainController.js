@@ -25,7 +25,7 @@ function MainController() {
 	}
 	
 	// Start the first room
-	var room1 = new Room7(scene);
+	var room1 = new Room1(scene);
 	//var room1 = new GameRoom(scene);
 	scene.add(room1);
 	
@@ -46,14 +46,19 @@ function lookToClick() {
 	this.intersectables = [];
 	this.updatables = [];
 	
+	this.parts = [];
 	// adds a puzzle peace
 	this.addPart = function(part){
-	
+		this.parts.push(part);
 		THREE.ImageUtils.loadTexture('images/part' + part + '.png', undefined, function(texture){
 			new Part(scene, texture, {
 				
 			});
 		});
+	}
+	
+	this.hasPart = function(part){
+		return $.inArray( part, this.parts ) != -1;
 	}
 }
 
