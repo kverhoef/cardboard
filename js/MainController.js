@@ -9,7 +9,7 @@ function MainController() {
 	// Rotate
 	//scene.rotation.y = 1000;
 	
-	scene.showStats = true;
+	scene.showStats = false;
 	
 	if (scene.showStats){
 		// STATS
@@ -25,7 +25,7 @@ function MainController() {
 	}
 	
 	// Start the first room
-	var room1 = new Room1(scene);
+	var room1 = new Room4(scene);
 	//var room1 = new GameRoom(scene);
 	scene.add(room1);
 	
@@ -39,7 +39,6 @@ function MainController() {
 
 function lookToClick() {
 	// create the raycaster
-	this.projector = new THREE.Projector();
 	this.raycaster = new THREE.Raycaster();
 
 	// List of possible intersectables

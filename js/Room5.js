@@ -12,18 +12,7 @@ function Room5(scene){
 	// parts
 	
 	
-	THREE.ImageUtils.loadTexture('images/part2.png', undefined, function(texture){
-		room.detail = new DetailImage(scene, texture, {
-			scale: 20,
-			degree: 30,
-			verticalDegree: 0,
-			radius: 10 * SCALE,
-			onFocus: function(){
-				this.remove();	
-				scene.addPart(2);
-			}
-		});
-	});
+	
 	
 	THREE.ImageUtils.loadTexture('images/part3.png', undefined, function(texture){
 		room.detail = new DetailImage(scene, texture, {

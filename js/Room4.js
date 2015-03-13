@@ -1,15 +1,47 @@
 Room4.prototype = Object.create(THREE.Object3D.prototype);
 Room4.prototype.constructor = Room4;
 
-function Room4(rootThis){
+function Room4(scene){
 	THREE.Object3D.call(this);
-	var room = this;
+	var room4 = this;
 	
-	this.textLights = new TextLights(rootThis, {
+	this.textLights = new TextLights(scene, {
 		
 	});
 	
-	this.textbox = new Textbox(rootThis, {
+	this.hotspotToRoom3 = new Hotspot(scene, {
+		rectLength: 4, 
+		rectWidth: 4, 
+		degree: 270,
+		verticalDegree: 0,
+		radius: 5 * SCALE,
+		showHotspot: scene.showHotspots,
+		onFocus: function(){
+				// remove the room
+				room4.remove();
+				// Start a new room
+				var room = new Room3(scene);
+				scene.add(room);
+		}
+	});
+	
+	this.hotspotToRoom5 = new Hotspot(scene, {
+		rectLength: 4, 
+		rectWidth: 4, 
+		degree: 90,
+		verticalDegree: 0,
+		radius: 5 * SCALE,
+		showHotspot: scene.showHotspots,
+		onFocus: function(){
+				// remove the room
+				room4.remove();
+				// Start a new room
+				var room = new GameRoom(scene);
+				scene.add(room);
+		}
+	});
+	
+	this.textbox = new Textbox(scene, {
 		text: "We love technology",
 		radius: 5 * SCALE,
 		degree: 50,
@@ -17,8 +49,10 @@ function Room4(rootThis){
 		color: 0xeeeeee
 	});
 	
+	this.textBoxes = [];
+	
 	this.smallText = function(text, verticalDegree){
-		var text = new Textbox(rootThis, {
+		var textbox = new Textbox(scene, {
 			text: text,
 			radius: 5 * SCALE,
 			degree: 50,
@@ -26,13 +60,9 @@ function Room4(rootThis){
 			color: 0xeeeeee,
 			size: 1
 		});
-	
-		this.smallTexts.push(text);
-		
-		return text;
+		this.textBoxes.push(textbox);
+		return textbox;
 	};
-	
-	this.smallTexts = [];
 	
 	this.smallText("We know that technology can make a difference in ", 176);
 	this.smallText("business, society, and life in general. We seek relevance", 182);
@@ -41,7 +71,7 @@ function Room4(rootThis){
 	this.smallText("in open innovation. We proactively develop modular,", 200);
 	this.smallText("reusable software components.", 206);
 	
-	this.photoSphere = new PhotoSphere(rootThis, 'images/small.jpg', {  depth: 110 });
+	this.photoSphere = new PhotoSphere(scene, 'images/small.jpg', {  depth: 110 });
 	
 	var sphere = new THREE.Mesh(
 		new THREE.SphereGeometry(100, 32, 32),
@@ -50,24 +80,28 @@ function Room4(rootThis){
 		})
 	);
 	
+	/*
 	// Invert the mesh inside-out
 	sphere.scale.x = -1;
 	this.sphere = sphere;
-	rootThis.add(sphere);
+	scene.add(sphere);
 	
-	this.photoSphere2 = new PhotoSphere(rootThis, 'images/cloud.png', {  transparent: true});
+	this.photoSphere2 = new PhotoSphere(scene, 'images/cloud.png', {  transparent: true});
+	*/
 	
 	this.remove = function(){
 		this.photoSphere.remove();
 		this.textLights.remove();
 		this.textbox.remove();
+		this.hotspotToRoom3.remove();
+		this.hotspotToRoom5.remove();
 		
-		for (var i=0;i<smallTexts.length;i++){
-			this.smallTexts[i].remove();
+		for (var i=0;i<this.textBoxes.length;i++){
+			this.textBoxes[i].remove();
 		}
 		
 		// remove self
-		rootThis.removeRoom(this);
+		scene.removeRoom(this);
 	}
 	
 }

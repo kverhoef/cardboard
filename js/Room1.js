@@ -59,7 +59,6 @@ function Room1(scene){
 				room.remove();
 				// Start a new room
 				var room2 = new Room2(scene);
-			
 		}
 	});
 	

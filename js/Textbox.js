@@ -78,7 +78,7 @@ function createText(root, args) {
 	var textGeo = new THREE.TextGeometry( args.text, {
 		size: args.size || 3,
 		height: args.height || 0.4,
-		curveSegments: args.curveSegments || 2,
+		curveSegments: args.curveSegments || 1,
 		font: args.font || "helvetiker",
 		bevelThickness: args.bevelThickness || 0.1,
 		bevelSize: args.bevelSize || 0.1,

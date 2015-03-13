@@ -1,6 +1,6 @@
 function Part(rootThis, texture, args) {
 
-	var geometry = new THREE.PlaneGeometry(texture.image.width / 320, texture.image.height / 320);
+	var geometry = new THREE.PlaneBufferGeometry(texture.image.width / 320, texture.image.height / 320);
 	
 	var material = new THREE.MeshBasicMaterial(
 		{
