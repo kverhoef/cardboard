@@ -25,7 +25,7 @@ function MainController() {
 	}
 	
 	// Start the first room
-	var room1 = new Room6(scene);
+	var room1 = new Room7(scene);
 	//var room1 = new GameRoom(scene);
 	scene.add(room1);
 	
