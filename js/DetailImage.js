@@ -32,12 +32,12 @@ function DetailImage(rootThis, texture, args) {
 	this.lookAt(cardboard.camera.position);
 	
 	rootThis.add(this);
-	
+
 	rootThis.intersectables.push(this.children[0]);
 
 	this.remove = function(){
 		// Remove from intersectables
-		rootThis.intersectables.splice($.inArray(this, rootThis.intersectables),1);
+		rootThis.intersectables.splice($.inArray(this.children[0], rootThis.intersectables),1);
 		// Remove from scene
 		rootThis.remove(this);
 	}
