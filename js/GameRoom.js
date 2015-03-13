@@ -38,7 +38,6 @@ function GameRoom(scene){
 					this.remove();
 					room.addBat();
 					room.addBall();
-					
 				}
 			});
 		});

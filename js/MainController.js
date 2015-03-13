@@ -24,9 +24,8 @@ function MainController() {
 		});
 	}
 	
-	
 	// Start the first room
-	var room1 = new GameRoom(scene);
+	var room1 = new Room5(scene);
 	//var room1 = new GameRoom(scene);
 	scene.add(room1);
 	
@@ -36,6 +35,28 @@ function MainController() {
 		scene.remove(room1);
 	}
 	
+	/*
+
+	THREE.ImageUtils.loadTexture('images/part2.png', undefined, function(texture){
+		part = new Part(scene, texture, {
+			
+		});
+	});
+	
+	THREE.ImageUtils.loadTexture('images/part3.png', undefined, function(texture){
+		part = new Part(scene, texture, {
+			
+		});
+	});
+	
+	THREE.ImageUtils.loadTexture('images/part4.png', undefined, function(texture){
+		part = new Part(scene, texture, {
+			
+		});
+	});
+	
+	this.addPart();
+	*/
 }
 
 function lookToClick() {
@@ -46,6 +67,16 @@ function lookToClick() {
 	// List of possible intersectables
 	this.intersectables = [];
 	this.updatables = [];
+	
+	//
+	this.addPart = function(part){
+	
+		THREE.ImageUtils.loadTexture('images/part' + part + '.png', undefined, function(texture){
+			new Part(scene, texture, {
+				
+			});
+		});
+	}
 }
 
 MainController.prototype = Object.create(THREE.Object3D.prototype);

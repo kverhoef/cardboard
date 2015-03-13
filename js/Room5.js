@@ -9,19 +9,68 @@ function Room5(scene){
 		
 	});
 	
-	// Part
-	THREE.ImageUtils.loadTexture('images/part2.png', undefined, function(texture){
-		room.detail = new Part(scene, texture, {
+	// parts
+	THREE.ImageUtils.loadTexture('images/part1.png', undefined, function(texture){
+		room.detail = new DetailImage(scene, texture, {
 			degree: 0,
 			verticalDegree: 0,
 			radius: 10 * SCALE,
-			onBlur: function(){
-				
-			
+			onFocus: function(){
+				this.remove();	
+				scene.addPart(1);
 			}
 		});
 	});
-
+	
+	THREE.ImageUtils.loadTexture('images/part2.png', undefined, function(texture){
+		room.detail = new DetailImage(scene, texture, {
+			degree: 30,
+			verticalDegree: 0,
+			radius: 10 * SCALE,
+			onFocus: function(){
+				this.remove();	
+				scene.addPart(2);
+			}
+		});
+	});
+	
+	THREE.ImageUtils.loadTexture('images/part3.png', undefined, function(texture){
+		room.detail = new DetailImage(scene, texture, {
+			degree: 60,
+			verticalDegree: 0,
+			radius: 10 * SCALE,
+			onFocus: function(){
+				this.remove();	
+				scene.addPart(3);
+			}
+		});
+	});
+	
+	THREE.ImageUtils.loadTexture('images/part4.png', undefined, function(texture){
+		room.detail = new DetailImage(scene, texture, {
+			degree: 90,
+			verticalDegree: 0,
+			radius: 10 * SCALE,
+			onFocus: function(){
+				this.remove();	
+				scene.addPart(4);
+			}
+		});
+	});
+	
+	THREE.ImageUtils.loadTexture('images/part5.png', undefined, function(texture){
+		room.detail = new DetailImage(scene, texture, {
+			degree: 120,
+			verticalDegree: 0,
+			radius: 10 * SCALE,
+			onFocus: function(){
+				this.remove();	
+				scene.addPart(5);
+			}
+		});
+	});
+	
+	
 	this.photoSphere = new PhotoSphere(scene, 'images/small.jpg', {   });
 	/*
 	var jsonLoader = new THREE.JSONLoader();
