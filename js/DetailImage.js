@@ -7,7 +7,7 @@ function DetailImage(rootThis, texture, args) {
 	THREE.Object3D.call(this);
 
 	// Create the object
-	var geometry = new THREE.PlaneGeometry(texture.image.width / 100, texture.image.height / 100);
+	var geometry = new THREE.PlaneGeometry(texture.image.width / args.scale || 100, texture.image.height / args.scale || 100);
 
 	var material = new THREE.MeshBasicMaterial({
 		map: texture,
@@ -22,14 +22,20 @@ function DetailImage(rootThis, texture, args) {
 	// Add the object
 	this.add(mesh);
 	
-	var phi = (args.verticalDegree)*Math.PI/180;
-    var theta = (args.degree-180)*Math.PI/180;
+	this.args = args;
+	this.degree = args.degree;
 	
-	this.position.x = -args.radius * Math.cos(phi) * Math.cos(theta);
-    this.position.y = args.radius * Math.sin(phi);
-    this.position.z = args.radius * Math.cos(phi) * Math.sin(theta);
-	
-	this.lookAt(cardboard.camera.position);
+	this.updatePosition = function(){
+		var phi = (this.args.verticalDegree)*Math.PI/180;
+		var theta = (this.args.degree-180)*Math.PI/180;
+		
+		this.position.x = -this.args.radius * Math.cos(phi) * Math.cos(theta);
+		this.position.y = this.args.radius * Math.sin(phi);
+		this.position.z = this.args.radius * Math.cos(phi) * Math.sin(theta);
+		
+		this.lookAt(cardboard.camera.position);
+	}
+	this.updatePosition();
 	
 	rootThis.add(this);
 
@@ -44,6 +50,9 @@ function DetailImage(rootThis, texture, args) {
 	
 	this.onFocus = args.onFocus;
 	this.onBlur = args.onBlur;
+	
+	
+
 }
 
 

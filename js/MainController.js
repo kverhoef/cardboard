@@ -25,7 +25,7 @@ function MainController() {
 	}
 	
 	// Start the first room
-	var room1 = new Room5(scene);
+	var room1 = new Room6(scene);
 	//var room1 = new GameRoom(scene);
 	scene.add(room1);
 	
@@ -35,28 +35,6 @@ function MainController() {
 		scene.remove(room1);
 	}
 	
-	/*
-
-	THREE.ImageUtils.loadTexture('images/part2.png', undefined, function(texture){
-		part = new Part(scene, texture, {
-			
-		});
-	});
-	
-	THREE.ImageUtils.loadTexture('images/part3.png', undefined, function(texture){
-		part = new Part(scene, texture, {
-			
-		});
-	});
-	
-	THREE.ImageUtils.loadTexture('images/part4.png', undefined, function(texture){
-		part = new Part(scene, texture, {
-			
-		});
-	});
-	
-	this.addPart();
-	*/
 }
 
 function lookToClick() {
@@ -68,7 +46,7 @@ function lookToClick() {
 	this.intersectables = [];
 	this.updatables = [];
 	
-	//
+	// adds a puzzle peace
 	this.addPart = function(part){
 	
 		THREE.ImageUtils.loadTexture('images/part' + part + '.png', undefined, function(texture){
@@ -133,15 +111,23 @@ MainController.prototype.findIntersections = function() {
 				}
 			}
 			else {
-				// Blur event on previous focused object
-				this.selected.obj.parent.onBlur();
+				try {
 			
-				window.navigator.vibrate(30);
-				this.selected = {
-					id: found.object.uuid,
-					ttl: TTL,
-					obj: found.object
-				};
+					// Blur event on previous focused object
+					this.selected.obj.parent.onBlur();
+				
+					window.navigator.vibrate(30);
+					this.selected = {
+						id: found.object.uuid,
+						ttl: TTL,
+						obj: found.object
+					};
+				
+				}
+				catch (e){
+					// TODO find out why this happens
+					//console.log(e);
+				}
 			}
 		}
 	} 
