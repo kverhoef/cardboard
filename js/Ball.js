@@ -112,11 +112,14 @@ function Ball(scene, args) {
 				// bounce back
 				
 				root.ballDirZ = -root.ballDirZ;
-				console.log("hit");
+				// increment speed
+				root.ballSpeed += 0.04
+				
+				//console.log("hit");
 				args.room.incrementScore();
 			}
 			else {
-				console.log("reset");
+				//console.log("reset");
 				root.resetStartPosition();
 				args.room.resetScore();
 			}
