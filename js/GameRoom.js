@@ -31,6 +31,7 @@ function GameRoom(scene){
 	
 		THREE.ImageUtils.loadTexture('images/start.png', undefined, function(texture){
 			room.detail = new DetailImage(scene, texture, {
+				scale : 100,
 				degree: 90,
 				verticalDegree: 0,
 				radius: 3 * SCALE,
