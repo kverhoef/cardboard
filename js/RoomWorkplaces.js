@@ -4,6 +4,7 @@ RoomWorkplaces.prototype.constructor = RoomWorkplaces;
 function RoomWorkplaces(scene){
 	THREE.Object3D.call(this);
 	var roomWorkplaces = this;
+	scene.room = this;
 	
 	this.photoSphere = new PhotoSphere(scene, 'images/PANO_workplaces.jpg');
 	
@@ -53,6 +54,7 @@ function RoomWorkplaces(scene){
 				onFocus: function(){
 					this.remove();	
 					scene.addPart(3);
+					scene.checkAllParts();
 				}
 			});
 		});

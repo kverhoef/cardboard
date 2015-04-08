@@ -25,7 +25,7 @@ function MainController() {
 	}
 	
 	// Start the first room
-	var room1 = new RoomWorkplaces(scene);
+	var room1 = new RoomArrival(scene);
 
 	scene.add(room1);
 	
@@ -58,6 +58,17 @@ function lookToClick() {
 	
 	this.hasPart = function(part){
 		return $.inArray( part, this.parts ) != -1;
+	}
+	
+	this.checkAllParts = function(){
+		if (this.parts.length == 1){
+			// remove the room
+			this.room.remove();
+			// Start a new room
+			this.rotation.y = 0;
+			new GameRoom(this);
+			
+		}
 	}
 }
 

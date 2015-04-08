@@ -15,12 +15,14 @@ function Textbox(scene, args) {
 	var phi = (args.verticalDegree)*Math.PI/180;
     var theta = (args.degree-180)*Math.PI/180;
 	
+	var centroid = getCentroid( this.textMesh );
+	
 	this.textMesh.position.x = (-args.radius * Math.cos(phi) * Math.cos(theta));
     this.textMesh.position.y = args.radius * Math.sin(phi);
     this.textMesh.position.z = (args.radius * Math.cos(phi) * Math.sin(theta));
 	
 	// Centreer de text
-	var centroid = getCentroid( this.textMesh );
+	
 	this.textMesh.geometry.applyMatrix(new THREE.Matrix4().makeTranslation( -centroid.x, -centroid.y, -centroid.z ) );
 	
 	var v = cardboard.camera.position;

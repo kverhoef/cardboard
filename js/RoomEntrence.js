@@ -4,6 +4,7 @@ RoomEntrence.prototype.constructor = RoomEntrence;
 function RoomEntrence(scene){
 	THREE.Object3D.call(this);
 	var roomEntrence = this;
+	scene.room = this;
 
 	/*
 	var textColor = 0x70C6F4;
@@ -110,6 +111,7 @@ function RoomEntrence(scene){
 				onFocus: function(){
 					this.remove();	
 					scene.addPart(1);
+					scene.checkAllParts();
 				}
 			});
 		});

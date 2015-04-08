@@ -4,6 +4,7 @@ Room7.prototype.constructor = Room7;
 function Room7(scene){
 	THREE.Object3D.call(this);
 	var room = this;
+	scene.room = this;
 	
 	// parts
 	this.textLights = new TextLights(scene, {

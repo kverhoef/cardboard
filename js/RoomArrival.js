@@ -4,6 +4,7 @@ RoomArrival.prototype = Object.create(THREE.Object3D.prototype);
 	function RoomArrival(scene){
 		THREE.Object3D.call(this);
 		var roomArrival = this;
+		scene.room = this;
 		
 		this.photoSphere = new PhotoSphere(scene, 'images/PANO_arrival.jpg');
 		
@@ -51,6 +52,7 @@ RoomArrival.prototype = Object.create(THREE.Object3D.prototype);
 					onFocus: function(){
 						this.remove();	
 						scene.addPart(2);
+						scene.checkAllParts();
 					}
 				});
 			});

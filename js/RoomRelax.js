@@ -4,6 +4,7 @@ RoomRelax.prototype.constructor = RoomRelax;
 function RoomRelax(scene){
 	THREE.Object3D.call(this);
 	var roomRelax = this;
+	scene.room = this;
 	
 	this.photoSphere = new PhotoSphere(scene, 'images/PANO_relax.jpg');
 	
@@ -53,6 +54,7 @@ function RoomRelax(scene){
 				onFocus: function(){
 					this.remove();	
 					scene.addPart(5);
+					scene.checkAllParts();
 				}
 			});
 		});

@@ -4,6 +4,7 @@ RoomBack.prototype.constructor = RoomBack;
 function RoomBack(scene){
 	THREE.Object3D.call(this);
 	var roomBack = this;
+	scene.room = this;
 	
 	this.photoSphere = new PhotoSphere(scene, 'images/PANO_back.jpg');
 	
@@ -53,6 +54,7 @@ function RoomBack(scene){
 				onFocus: function(){
 					this.remove();	
 					scene.addPart(4);
+					scene.checkAllParts();
 				}
 			});
 		});

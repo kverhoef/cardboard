@@ -4,6 +4,7 @@ RoomWorkplacesFront.prototype.constructor = RoomWorkplacesFront;
 function RoomWorkplacesFront(scene){
 	THREE.Object3D.call(this);
 	var roomWorkplacesFront = this;
+	scene.room = this;
 	
 	this.photoSphere = new PhotoSphere(scene, 'images/PANO_workplaces_front.jpg');
 	
