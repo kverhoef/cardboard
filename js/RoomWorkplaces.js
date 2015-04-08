@@ -46,7 +46,7 @@ function RoomWorkplaces(scene){
 	
 		THREE.ImageUtils.loadTexture('images/part3_.png', undefined, function(texture){
 			roomWorkplaces.part3 = new DetailImage(scene, texture, {
-				scale: 25,
+				scale: 10,
 				degree: 224,
 				verticalDegree: -11,
 				radius: 30 * SCALE,

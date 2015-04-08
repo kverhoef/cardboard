@@ -58,6 +58,7 @@ function RoomRelax(scene){
 		});
 	}
 	
+	/*
 	THREE.ImageUtils.loadTexture('images/luminis1.png', undefined, function(texture){
 		roomRelax.luminis1 = roomRelax.detail = new DetailImage(scene, texture, {
 			scale: 40,
@@ -151,15 +152,17 @@ function RoomRelax(scene){
 			roomRelax.luminis6.updatePosition();
 		}
 	});
-	
+	*/
 	this.remove = function(){
 		this.photoSphere.remove();
+		/*
 		this.luminis1.remove();
 		this.luminis2.remove();
 		this.luminis3.remove();
 		this.luminis4.remove();
 		this.luminis5.remove();
 		this.luminis6.remove();
+		*/
 		this.hotspotToRoomWorkplacesFront.remove();
 		this.hotspotToRoomBack.remove();
 

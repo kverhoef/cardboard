@@ -46,7 +46,7 @@ function RoomBack(scene){
 	
 		THREE.ImageUtils.loadTexture('images/part4_.png', undefined, function(texture){
 			roomBack.part4 = new DetailImage(scene, texture, {
-				scale: 10,
+				scale: 8,
 				degree: 6,
 				verticalDegree: -16,
 				radius: 30 * SCALE,
