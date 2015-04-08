@@ -52,12 +52,27 @@ Cardboard.prototype.initControls = function(event) {
   }
 };
 
+var fps = 30;
+var now;
+var then = Date.now();
+var interval = 1000/fps;
+var delta;
+
 Cardboard.prototype.animate = function() {
   if (!this._playing)
     return;
   requestAnimationFrame(this.animate);
-  this.update();
-  this.render();
+  
+  now = Date.now();
+  delta = now - then;
+  
+  //if (delta > interval) {
+        then = now - (delta % interval);
+         
+        this.update();
+		this.render();
+   // }
+  
 };
 
 Cardboard.prototype.pause = function() {

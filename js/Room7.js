@@ -1,5 +1,5 @@
 Room7.prototype = Object.create(THREE.Object3D.prototype);
-Room7.prototype.constructor = Room6;
+Room7.prototype.constructor = Room7;
 
 function Room7(scene){
 	THREE.Object3D.call(this);
