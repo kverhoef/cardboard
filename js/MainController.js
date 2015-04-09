@@ -25,7 +25,7 @@ function MainController() {
 	}
 	
 	// Start the first room
-	var room1 = new RoomArrival(scene);
+	var room1 = new RoomEntrence(scene);
 
 	scene.add(room1);
 	
@@ -61,13 +61,12 @@ function lookToClick() {
 	}
 	
 	this.checkAllParts = function(){
-		if (this.parts.length == 1){
+		if (this.parts.length == 5){
 			// remove the room
 			this.room.remove();
 			// Start a new room
 			this.rotation.y = 0;
 			new GameRoom(this);
-			
 		}
 	}
 }
@@ -109,20 +108,17 @@ MainController.prototype.findIntersections = function() {
 			if (this.selected.id == found.object.uuid) {
 				
 				if (this.selected.obj.parent.onFocus != undefined){
-			
+					
 					// decrement
 					this.selected.ttl -= 1;
 					var p = (this.selected.ttl / TTL);
 					cursor.scale.set(p, p, p);
-					if (this.selected.ttl <= 0) {
-						p = p * 100;
-						cursor.scale.set(p, p, p);
-						
+					if (this.selected.ttl <= 1) {
 						// Fire the onFocus event let the object decide the action
 						this.selected.obj.parent.onFocus();
 						this.selected = null;
 					}
-				
+					
 				}
 			}
 			else {
