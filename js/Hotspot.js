@@ -1,7 +1,7 @@
 Hotspot.prototype = Object.create(THREE.Object3D.prototype);
 Hotspot.prototype.constructor = Hotspot;
 
-function Hotspot(rootThis, args) {
+function Hotspot(scene, args) {
 	THREE.Object3D.call(this);
 
 	var rectShape = new THREE.Shape(); 
@@ -29,14 +29,14 @@ function Hotspot(rootThis, args) {
 	
 	this.add(rectMesh);
 	
-	rootThis.add(this);
-	rootThis.intersectables.push(this.children[0]);
+	scene.add(this);
+	scene.intersectables.push(this.children[0]);
 	
 	this.remove = function(){
 		// Remove from intersectables
-		rootThis.intersectables.splice($.inArray(this.children[0], rootThis.intersectables),1);
+		scene.intersectables.splice($.inArray(this.children[0], scene.intersectables),1);
 		// Remove from scene
-		rootThis.remove(this);
+		scene.remove(this);
 	}
 
 	this.onFocus = args.onFocus;
