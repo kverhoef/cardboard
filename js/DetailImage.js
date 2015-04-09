@@ -39,11 +39,14 @@ function DetailImage(rootThis, texture, args) {
 	
 	rootThis.add(this);
 
-	rootThis.intersectables.push(this.children[0]);
-
+	if (args.onFocus != undefined || args.onBlur != undefined){
+		rootThis.intersectables.push(this.children[0]);
+	}
 	this.remove = function(){
 		// Remove from intersectables
-		rootThis.intersectables.splice($.inArray(this.children[0], rootThis.intersectables),1);
+		if (args.onFocus != undefined || args.onBlur != undefined){
+			rootThis.intersectables.splice($.inArray(this.children[0], rootThis.intersectables),1);
+		}
 		// Remove from scene
 		rootThis.remove(this);
 	}
