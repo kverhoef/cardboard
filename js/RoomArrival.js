@@ -8,8 +8,20 @@ RoomArrival.prototype = Object.create(THREE.Object3D.prototype);
 		
 		this.photoSphere = new PhotoSphere(scene, 'images/PANO_arrival.jpg');
 		
+		this.textLights = new TextLights(scene, {});
+	
+		this.arrowToEntrence = new Textbox(scene, {
+			lookAt: new THREE.Vector3( cardboard.camera.position.x, -300, cardboard.camera.position.z ),
+			text: "V",
+			radius: 5 * SCALE,
+			degree: 66,
+			verticalDegree: -10,
+			color: 0x000000,
+			size: 5
+		});
+		
 		this.hotspotToEntrence = new Hotspot(scene, {
-			rectLength: 16, 
+			rectLength: 5, 
 			rectWidth: 11, 
 			degree: 86,
 			verticalDegree: 0,
@@ -23,12 +35,22 @@ RoomArrival.prototype = Object.create(THREE.Object3D.prototype);
 					scene.rotation.y -= 250;
 			}
 		});
-		this.hotspotToEntrence.rectMesh.position.y -= 9;
+		this.hotspotToEntrence.rectMesh.position.y -= 5;
+		
+		this.arrowToWorkplacesFront = new Textbox(scene, {
+			lookAt: new THREE.Vector3( cardboard.camera.position.x, -300, cardboard.camera.position.z ),
+			text: "V",
+			radius: 5 * SCALE,
+			degree: 185,
+			verticalDegree: -10,
+			color: 0x000000,
+			size: 5
+		});
 		
 		this.hotspotToWorkplacesFront = new Hotspot(scene, {
-			rectLength: 24, 
-			rectWidth: 34, 
-			degree: 220,
+			rectLength: 5, 
+			rectWidth: 11, 
+			degree: 204,
 			verticalDegree: 0,
 			radius: 5 * SCALE,
 			showHotspot: scene.showHotspots,
@@ -39,7 +61,7 @@ RoomArrival.prototype = Object.create(THREE.Object3D.prototype);
 					new RoomWorkplacesFront(scene);
 			}
 		});
-		this.hotspotToWorkplacesFront.rectMesh.position.y -= 12;
+		this.hotspotToWorkplacesFront.rectMesh.position.y -= 5;
 		
 		if (!scene.hasPart(2)){
 	
@@ -63,6 +85,10 @@ RoomArrival.prototype = Object.create(THREE.Object3D.prototype);
 			this.photoSphere.remove();
 			this.hotspotToEntrence.remove();
 			this.hotspotToWorkplacesFront.remove();
+			
+			this.textLights.remove();
+			this.arrowToEntrence.remove();
+			this.arrowToWorkplacesFront.remove();
 			
 			// part
 			if (roomArrival.part2 != undefined){

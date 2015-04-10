@@ -8,8 +8,20 @@ function RoomBack(scene){
 	
 	this.photoSphere = new PhotoSphere(scene, 'images/PANO_back.jpg');
 	
+	this.textLights = new TextLights(scene, {});
+	
+	this.arrowToRoomWorkplaces = new Textbox(scene, {
+		lookAt: new THREE.Vector3( cardboard.camera.position.x, -300, cardboard.camera.position.z ),
+		text: "V",
+		radius: 5 * SCALE,
+		degree: 180,
+		verticalDegree: -10,
+		color: 0x000000,
+		size: 5
+	});
+	
 	this.hotspotToRoomWorkplaces = new Hotspot(scene, {
-		rectLength: 10, 
+		rectLength: 5, 
 		rectWidth: 9, 
 		degree: 195,
 		verticalDegree: 0,
@@ -25,10 +37,20 @@ function RoomBack(scene){
 	});
 	this.hotspotToRoomWorkplaces.rectMesh.position.y -= 5;
 	
+	this.arrowToRoomRelax = new Textbox(scene, {
+		lookAt: new THREE.Vector3( cardboard.camera.position.x, -300, cardboard.camera.position.z ),
+		text: "V",
+		radius: 5 * SCALE,
+		degree: 248,
+		verticalDegree: -10,
+		color: 0x000000,
+		size: 5
+	});
+	
 	this.hotspotToRoomRelax = new Hotspot(scene, {
-		rectLength: 14, 
-		rectWidth: 11, 
-		degree: 267,
+		rectLength: 5, 
+		rectWidth: 9, 
+		degree: 264,
 		verticalDegree: 0,
 		radius: 5 * SCALE,
 		showHotspot: scene.showHotspots,
@@ -40,7 +62,7 @@ function RoomBack(scene){
 				scene.rotation.y += 750;
 		}
 	});
-	this.hotspotToRoomRelax.rectMesh.position.y -= 7;
+	this.hotspotToRoomRelax.rectMesh.position.y -= 5;
 	
 	// parts	
 	if (!scene.hasPart(4)){
@@ -80,6 +102,10 @@ function RoomBack(scene){
 		
 		this.hotspotToRoomWorkplaces.remove();
 		this.hotspotToRoomRelax.remove();
+		
+		this.textLights.remove();
+		this.arrowToRoomWorkplaces.remove();
+		this.arrowToRoomRelax.remove();
 		
 		/*
 		this.textLights.remove();

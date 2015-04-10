@@ -49,8 +49,20 @@ function RoomEntrence(scene){
 	
 	this.photoSphere = new PhotoSphere(scene, 'images/PANO_entrence.jpg');
 	
+	this.textLights = new TextLights(scene, {});
+	
+	this.arrowToArrival = new Textbox(scene, {
+		lookAt: new THREE.Vector3( cardboard.camera.position.x, -300, cardboard.camera.position.z ),
+		text: "V",
+		radius: 5 * SCALE,
+		degree: 178,
+		verticalDegree: -10,
+		color: 0x000000,
+		size: 5
+	});
+	
 	this.hotspotToArrival = new Hotspot(scene, {
-		rectLength: 14, 
+		rectLength: 5, 
 		rectWidth: 11, 
 		degree: 198,
 		radius: 5 * SCALE,
@@ -65,7 +77,16 @@ function RoomEntrence(scene){
 				scene.rotation.y += 250;
 		}
 	});
-	this.hotspotToArrival.rectMesh.position.y -= 8;
+	this.hotspotToArrival.rectMesh.position.y -= 5;
+	
+	THREE.ImageUtils.loadTexture('images/luminis0.png', undefined, function(texture){
+		roomEntrence.luminis = new DetailImage(scene, texture, {
+			scale: 20,
+			degree: 216,
+			verticalDegree: 5,
+			radius: 10 * SCALE
+		});
+	});
 	
 	/*
 	this.createComputerHotspot = function(){
@@ -106,7 +127,7 @@ function RoomEntrence(scene){
 			roomEntrence.part1 = new DetailImage(scene, texture, {
 				scale: 10,
 				degree: 0,
-				verticalDegree: -68,
+				verticalDegree: -67,
 				radius: 30 * SCALE,
 				onFocus: function(){
 					this.remove();	
@@ -120,6 +141,9 @@ function RoomEntrence(scene){
 	this.remove = function(){
 		this.photoSphere.remove();
 		this.hotspotToArrival.remove();
+		
+		this.textLights.remove();
+		this.arrowToArrival.remove();
 		/*
 		this.computerHotspot.remove();
 		this.textbox.remove();
@@ -129,6 +153,10 @@ function RoomEntrence(scene){
 			this.textBoxes[i].remove();
 		}
 		*/
+		if (roomEntrence.luminis != undefined){
+			roomEntrence.luminis.remove();
+		}
+		
 		// part
 		if (roomEntrence.part1 != undefined){
 			roomEntrence.part1.remove();

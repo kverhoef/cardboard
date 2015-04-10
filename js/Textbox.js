@@ -17,6 +17,7 @@ function Textbox(scene, args) {
 	
 	var centroid = getCentroid( this.textMesh );
 	
+	
 	this.textMesh.position.x = (-args.radius * Math.cos(phi) * Math.cos(theta));
     this.textMesh.position.y = args.radius * Math.sin(phi);
     this.textMesh.position.z = (args.radius * Math.cos(phi) * Math.sin(theta));
@@ -27,9 +28,10 @@ function Textbox(scene, args) {
 	
 	var v = cardboard.camera.position;
 	
+    this.textMesh.lookAt(v);
+	var lookAt = args.lookAt || cardboard.camera.position 
 	
-	this.textMesh.lookAt(cardboard.camera.position);
-
+	this.textMesh.lookAt(lookAt);
 	scene.add(this.textMesh);
 	
 	var text = this;

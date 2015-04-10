@@ -8,8 +8,20 @@ function RoomWorkplacesFront(scene){
 	
 	this.photoSphere = new PhotoSphere(scene, 'images/PANO_workplaces_front.jpg');
 	
+	this.textLights = new TextLights(scene, {});
+	
+	this.arrowToRoomArrival = new Textbox(scene, {
+		lookAt: new THREE.Vector3( cardboard.camera.position.x, -300, cardboard.camera.position.z ),
+		text: "V",
+		radius: 5 * SCALE,
+		degree: -25,
+		verticalDegree: -10,
+		color: 0x000000,
+		size: 5
+	});
+	
 	this.hotspotToRoomArrival = new Hotspot(scene, {
-		rectLength: 8, 
+		rectLength: 5, 
 		rectWidth: 9, 
 		degree: -10,
 		verticalDegree: 0,
@@ -24,10 +36,20 @@ function RoomWorkplacesFront(scene){
 	});
 	this.hotspotToRoomArrival.rectMesh.position.y -= 5;
 	
+	this.arrowToWorkplaces = new Textbox(scene, {
+		lookAt: new THREE.Vector3( cardboard.camera.position.x, -300, cardboard.camera.position.z ),
+		text: "V",
+		radius: 5 * SCALE,
+		degree: 162,
+		verticalDegree: -10,
+		color: 0x000000,
+		size: 5
+	});
+	
 	this.hotspotToWorkplaces = new Hotspot(scene, {
-		rectLength: 14, 
-		rectWidth: 16, 
-		degree: 188,
+		rectLength: 5, 
+		rectWidth: 9, 
+		degree: 178,
 		verticalDegree: 0,
 		radius: 5 * SCALE,
 		showHotspot: scene.showHotspots,
@@ -39,11 +61,21 @@ function RoomWorkplacesFront(scene){
 				scene.rotation.y -= 750;
 		}
 	});
-	this.hotspotToWorkplaces.rectMesh.position.y -= 9;
+	this.hotspotToWorkplaces.rectMesh.position.y -= 5;
+	
+	this.arrowToRoomRelax = new Textbox(scene, {
+		lookAt: new THREE.Vector3( cardboard.camera.position.x, -300, cardboard.camera.position.z ),
+		text: "V",
+		radius: 5 * SCALE,
+		degree: 105,
+		verticalDegree: -10,
+		color: 0x000000,
+		size: 5
+	});
 	
 	this.hotspotToRoomRelax = new Hotspot(scene, {
-		rectLength: 10, 
-		rectWidth: 8, 
+		rectLength: 5, 
+		rectWidth: 9, 
 		degree: 120,
 		verticalDegree: 0,
 		radius: 5 * SCALE,
@@ -102,6 +134,11 @@ function RoomWorkplacesFront(scene){
 		this.hotspotToRoomArrival.remove();
 		this.hotspotToWorkplaces.remove();
 		this.hotspotToRoomRelax.remove();
+		
+		this.arrowToRoomRelax.remove();
+		this.arrowToWorkplaces.remove();
+		this.arrowToRoomArrival.remove();
+		this.textLights.remove();
 		/*
 		this.textbox.remove();
 		this.textLights.remove();
