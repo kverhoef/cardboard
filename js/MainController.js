@@ -21,7 +21,7 @@ function MainController() {
 	}
 	
 	// Start the first room
-	var room1 = new RoomEntrence(scene);
+	var room1 = new RoomChef(scene);
 
 	scene.add(room1);
 	
