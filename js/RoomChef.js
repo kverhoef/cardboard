@@ -12,10 +12,10 @@ RoomChef.prototype = Object.create(THREE.Object3D.prototype);
 		
 		THREE.ImageUtils.loadTexture('images/vandijk/whiteboard.png', undefined, function(texture){
 			roomArrival.part2 = new DetailImage(scene, texture, {
-				scale: 14,
+				scale: 28,
 				degree: 163,
 				verticalDegree: -11.5,
-				radius: 25 * SCALE,
+				radius: 12.5 * SCALE,
 			});
 			roomArrival.part2.mesh.rotation.y = 0.5;
 			roomArrival.part2.mesh.rotation.x = -0.02;
@@ -23,10 +23,10 @@ RoomChef.prototype = Object.create(THREE.Object3D.prototype);
 		
 		THREE.ImageUtils.loadTexture('images/vandijk/vandijk3.png', undefined, function(texture){
 			roomArrival.part2 = new DetailImage(scene, texture, {
-				scale: 11,
+				scale: 22,
 				degree: 0,
 				verticalDegree: 0,
-				radius: 25 * SCALE,
+				radius: 12.5 * SCALE,
 			});
 			roomArrival.part2.mesh.rotation.y = 0.15;
 			roomArrival.part2.mesh.rotation.x = 0;
@@ -35,10 +35,10 @@ RoomChef.prototype = Object.create(THREE.Object3D.prototype);
 		
 		THREE.ImageUtils.loadTexture('images/vandijk/vandijk1.png', undefined, function(texture){
 			roomArrival.part2 = new DetailImage(scene, texture, {
-				scale: 30,
+				scale: 60,
 				degree: 95,
 				verticalDegree: -40,
-				radius: 24 * SCALE,
+				radius: 12 * SCALE,
 			});
 			roomArrival.part2.mesh.rotation.x = -1;
 			roomArrival.part2.mesh.rotation.y = -0.21;
@@ -46,10 +46,10 @@ RoomChef.prototype = Object.create(THREE.Object3D.prototype);
 		
 		THREE.ImageUtils.loadTexture('images/vandijk/vandijk2.png', undefined, function(texture){
 			roomArrival.part2 = new DetailImage(scene, texture, {
-				scale: 30,
+				scale: 60,
 				degree: 95,
 				verticalDegree: 0,
-				radius: 24 * SCALE,
+				radius: 12 * SCALE,
 			});
 			roomArrival.part2.mesh.rotation.z = 0.13;
 		});
