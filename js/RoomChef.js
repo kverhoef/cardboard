@@ -6,7 +6,7 @@ RoomChef.prototype = Object.create(THREE.Object3D.prototype);
 		var roomArrival = this;
 		scene.room = this;
 		
-		this.photoSphere = new PhotoSphere(scene, 'images/PANO_Kantoor_directeur.jpg');
+		this.photoSphere = new PhotoSphere(scene, 'images/rooms/PANO_Kantoor_directeur.jpg');
 		
 		this.textLights = new TextLights(scene, {});		
 		

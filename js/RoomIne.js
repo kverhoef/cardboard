@@ -6,7 +6,7 @@ function RoomIne(scene){
 	var roomIne = this;
 	scene.room = this;
 	
-	this.photoSphere = new PhotoSphere(scene, 'images/PANO_Kantoor_officemanager.jpg');
+	this.photoSphere = new PhotoSphere(scene, 'images/rooms/PANO_Kantoor_officemanager.jpg');
 	
 	this.textLights = new TextLights(scene, {});
 	
