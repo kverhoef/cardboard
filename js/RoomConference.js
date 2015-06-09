@@ -32,6 +32,17 @@ RoomConference.prototype.constructor = RoomConference;
             room.whiteboard.mesh.rotation.z = -0.12;
             room.whiteboard.mesh.rotation.x = -1;
         });
+        
+        THREE.ImageUtils.loadTexture('images/monuta/uitvaartkostenmeter.jpg', undefined, function(texture){
+            room.whiteboard = new DetailImage(scene, texture, {
+                scale: 60,
+                degree: 246,
+                verticalDegree: -4,
+                radius: 10 * SCALE
+            });
+            room.whiteboard.mesh.rotation.z = -0.20;
+            room.whiteboard.mesh.rotation.x = 0;
+        });
 
         THREE.ImageUtils.loadTexture('images/monuta/monuta_logo_rood.png', undefined, function(texture){
             room.whiteboard = new DetailImage(scene, texture, {
