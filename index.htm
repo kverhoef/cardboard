@@ -37,12 +37,21 @@
 <script src="js/DetailImage.js"></script>
 <script src="js/Textbox.js"></script>
 <script src="js/GameRoom.js"></script>
+<script src="js/NavigationArrow.js"></script>
 <script src="js/Bat.js"></script>
 <script src="js/Part.js"></script>
+<script src="js/SlideShow.js"></script>
 <script src="js/Ball.js"></script>
 <script src="js/TextLights.js"></script>
 
 <script>
+
+$(function() {
+	// Initiate Insomnia PhoneGap Plugin
+	try {
+		cordova.exec(function(){}, function(){}, "Insomnia", "keepAwake", []);
+	} catch (e){ }
+});
 
 // initialize the screen
 var cardboard, mainController, cursor;
@@ -53,7 +62,6 @@ function setup() {
 
 	mainController = new MainController();
 	cardboard.scene.add(mainController);
-
 
 	cursor = new Cursor();
 	cardboard.camera.add(cursor);

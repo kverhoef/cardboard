@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "nl.kevinverhoef.cardboard"
+        version   = "0.1">
+
+    <name>Cardboard</name>
+
+    <description>
+        Cardboard navigable spheres with three.js
+    </description>
+
+    <author href="http://darts.kevinverhoef.nl" email="verhoef.k@gmail.com">
+        Kevin Verhoef
+    </author>
+
+    <icon src="icon.png" />
+
+    <preference name="phonegap-version" value="3.6.3" />
+
+    <preference name="fullscreen" value="true" />
+    <preference name="orientation" value="landscape" />
+    <preference name="detect-data-types" value="false" />
+    <preference name="exit-on-suspend" value="true" />
+	<preference name="permissions" value="none"/>
+
+    <gap:plugin name="nl.x-services.plugins.insomnia" version="4.0.1" />
+    
+    <gap:platform name="android" />
+    
+</widget>

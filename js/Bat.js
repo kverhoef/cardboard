@@ -3,7 +3,7 @@ Bat.prototype.constructor = Bat;
 
 function Bat(scene, args) {
 	THREE.Object3D.call(this);
-
+	
 	var rectShape = new THREE.Shape(); 
 	rectShape.moveTo( 0, 0 ); 
 	rectShape.lineTo( 0, args.rectLength ); 

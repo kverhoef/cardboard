@@ -6,73 +6,42 @@ function RoomWorkplaces(scene){
 	var roomWorkplaces = this;
 	scene.room = this;
 	
-	this.photoSphere = new PhotoSphere(scene, 'images/PANO_workplaces.jpg');
+	this.photoSphere = new PhotoSphere(scene, 'images/rooms/PANO_Werkplekken_garderobe_zijde.jpg');
 	
 	this.textLights = new TextLights(scene, {});
 	
-	this.arrowToWorkplacesFront = new Textbox(scene, {
-		lookAt: new THREE.Vector3( cardboard.camera.position.x, -300, cardboard.camera.position.z ),
-		text: "V",
-		radius: 5 * SCALE,
-		degree: 115,
-		verticalDegree: -10,
-		color: 0x000000,
-		size: 5
-	});
-	
-	this.hotspotToWorkplacesFront = new Hotspot(scene, {
-		
-		rectLength: 5, 
-		rectWidth: 9, 
-		degree: 130,
-		verticalDegree: 0,
-		radius: 5 * SCALE,
-		showHotspot: scene.showHotspots,
-		onFocus: function(){
+	this.navigationArrowToArrival = new NavigationArrow(scene, {
+			degree: 132,
+			verticalOffset: 0,
+			onFocus: function(){
 				// remove the room
 				roomWorkplaces.remove();
 				// Start a new room
-				new RoomWorkplacesFront(scene);
+				new RoomArrival(scene);
 				scene.rotation.y += 650;
-		}
-	});
-	this.hotspotToWorkplacesFront.rectMesh.position.y -= 5;
-	
-	this.arrowToRoomBack = new Textbox(scene, {
-		lookAt: new THREE.Vector3( cardboard.camera.position.x, -300, cardboard.camera.position.z ),
-		text: "V",
-		radius: 5 * SCALE,
-		degree: 260,
-		verticalDegree: -10,
-		color: 0x000000,
-		size: 5
+			}
 	});
 	
-	this.hotspotToRoomBack = new Hotspot(scene, {
-		rectLength: 5, 
-		rectWidth: 9, 
-		degree: 275,
-		verticalDegree: 0,
-		radius: 5 * SCALE,
-		showHotspot: scene.showHotspots,
-		onFocus: function(){
+	this.navigationArrowToBack = new NavigationArrow(scene, {
+			degree: 286,
+			verticalOffset: 0,
+			onFocus: function(){
 				// remove the room
 				roomWorkplaces.remove();
 				// Start a new room
 				new RoomBack(scene);
 				scene.rotation.y -= 650;
-		}
+			}
 	});
-	this.hotspotToRoomBack.rectMesh.position.y -= 6;
 	
 	if (!scene.hasPart(3)){
 	
 		THREE.ImageUtils.loadTexture('images/part3_.png', undefined, function(texture){
 			roomWorkplaces.part3 = new DetailImage(scene, texture, {
-				scale: 10,
+				scale: 100,
 				degree: 224,
 				verticalDegree: -11,
-				radius: 30 * SCALE,
+				radius: 5 * SCALE,
 				onFocus: function(){
 					this.remove();	
 					scene.addPart(3);
@@ -82,77 +51,15 @@ function RoomWorkplaces(scene){
 		});
 		
 	}
-	/*
-	this.textLights = new TextLights(scene, {
-		
-	});
-	
-	this.textbox = new Textbox(scene, {
-		text: "We love technology",
-		radius: 5 * SCALE,
-		degree: 50,
-		verticalDegree: 165,
-		color: 0xeeeeee
-	});
-	
-	this.textBoxes = [];
-	
-	this.smallText = function(text, verticalDegree){
-		var textbox = new Textbox(scene, {
-			text: text,
-			radius: 5 * SCALE,
-			degree: 50,
-			verticalDegree: verticalDegree,
-			color: 0xeeeeee,
-			size: 1
-		});
-		this.textBoxes.push(textbox);
-		return textbox;
-	};
-	
-	this.smallText("We know that technology can make a difference in ", 176);
-	this.smallText("business, society, and life in general. We seek relevance", 182);
-	this.smallText("through embracing new information technology and using", 188);
-	this.smallText("this to innovate for and with our customers. We are pioneers", 194);
-	this.smallText("in open innovation. We proactively develop modular,", 200);
-	this.smallText("reusable software components.", 206);
-	
-	this.photoSphere = new PhotoSphere(scene, 'images/small.jpg', {  depth: 110 });
-	
-	var sphere = new THREE.Mesh(
-		new THREE.SphereGeometry(100, 32, 32),
-		new THREE.MeshBasicMaterial({
-			color: 0xFFFFFF, transparent: true, opacity: 0.25
-		})
-	);
-	*/
-	/*
-	// Invert the mesh inside-out
-	sphere.scale.x = -1;
-	this.sphere = sphere;
-	scene.add(sphere);
-	
-	this.photoSphere2 = new PhotoSphere(scene, 'images/cloud.png', {  transparent: true});
-	*/
 	
 	this.remove = function(){
 		this.photoSphere.remove();
 		
-		this.hotspotToWorkplacesFront.remove();
-		this.hotspotToRoomBack.remove();
+		this.navigationArrowToArrival.remove();
+		this.navigationArrowToBack.remove();
 		
 		this.textLights.remove();
-		this.arrowToRoomBack.remove();
-		this.arrowToWorkplacesFront.remove();
-		/*
-		this.textLights.remove();
-		this.textbox.remove();
-		
-		for (var i=0;i<this.textBoxes.length;i++){
-			this.textBoxes[i].remove();
-		}
-		
-		*/
+
 		// part
 		if (this.part3 != undefined){
 			this.part3.remove();

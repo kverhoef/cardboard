@@ -12,9 +12,8 @@ function Cardboard() {
   this.scene = new THREE.Scene();
   this.effect = new THREE.StereoEffect(this.renderer);
 
-  this.camera = new THREE.PerspectiveCamera(
-  90, window.innerWidth / window.innerHeight, 0.001, 700
-  );
+  this.camera = new THREE.PerspectiveCamera(90, Math.round(window.innerWidth / window.innerHeight), 1, 100);
+
   this.scene.add(this.camera);
 
   this.controls = new THREE.DeviceOrientationControls(this.camera, true);
@@ -52,7 +51,7 @@ Cardboard.prototype.initControls = function(event) {
   }
 };
 
-var fps = 30;
+var fps = 40;
 var now;
 var then = Date.now();
 var interval = 1000/fps;
@@ -66,12 +65,12 @@ Cardboard.prototype.animate = function() {
   now = Date.now();
   delta = now - then;
   
-  //if (delta > interval) {
+  if (delta > interval) {
         then = now - (delta % interval);
          
         this.update();
 		this.render();
-   // }
+   }
   
 };
 

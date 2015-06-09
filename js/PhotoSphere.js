@@ -5,7 +5,7 @@ function PhotoSphere(rootThis, textureUrl, args) {
 	args = {} || args;
 
 	var sphere = new THREE.Mesh(
-		new THREE.SphereGeometry(args.depth || 100, 32, 32),
+		new THREE.SphereGeometry(args.depth || 50, 32, 32),
 		new THREE.MeshBasicMaterial({
 			map: THREE.ImageUtils.loadTexture(textureUrl), transparent: args.transparent || false, opacity: 0.5
 		})

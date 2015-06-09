@@ -6,73 +6,56 @@ function RoomBack(scene){
 	var roomBack = this;
 	scene.room = this;
 	
-	this.photoSphere = new PhotoSphere(scene, 'images/PANO_back.jpg');
+	this.photoSphere = new PhotoSphere(scene, 'images/rooms/PANO_Ruimte_achter.jpg');
 	
 	this.textLights = new TextLights(scene, {});
-	
-	this.arrowToRoomWorkplaces = new Textbox(scene, {
-		lookAt: new THREE.Vector3( cardboard.camera.position.x, -300, cardboard.camera.position.z ),
-		text: "V",
-		radius: 5 * SCALE,
-		degree: 180,
-		verticalDegree: -10,
-		color: 0x000000,
-		size: 5
-	});
-	
-	this.hotspotToRoomWorkplaces = new Hotspot(scene, {
-		rectLength: 5, 
-		rectWidth: 9, 
-		degree: 195,
-		verticalDegree: 0,
-		radius: 5 * SCALE,
-		showHotspot: scene.showHotspots,
-		onFocus: function(){
+		
+	this.navigationArrowToWorkplaces = new NavigationArrow(scene, {
+			degree: 135,
+			verticalOffset: 0,
+			onFocus: function(){
 				// remove the room
 				roomBack.remove();
 				// Start a new room
 				new RoomWorkplaces(scene);
 				scene.rotation.y += 750;
-		}
-	});
-	this.hotspotToRoomWorkplaces.rectMesh.position.y -= 5;
-	
-	this.arrowToRoomRelax = new Textbox(scene, {
-		lookAt: new THREE.Vector3( cardboard.camera.position.x, -300, cardboard.camera.position.z ),
-		text: "V",
-		radius: 5 * SCALE,
-		degree: 248,
-		verticalDegree: -10,
-		color: 0x000000,
-		size: 5
+			}
 	});
 	
-	this.hotspotToRoomRelax = new Hotspot(scene, {
-		rectLength: 5, 
-		rectWidth: 9, 
-		degree: 264,
-		verticalDegree: 0,
-		radius: 5 * SCALE,
-		showHotspot: scene.showHotspots,
-		onFocus: function(){
+	this.navigationArrowToRelax = new NavigationArrow(scene, {
+			degree: 184,
+			verticalOffset: 0,
+			onFocus: function(){
 				// remove the room
 				roomBack.remove();
 				// Start a new room
 				new RoomRelax(scene);
 				scene.rotation.y += 750;
-		}
+			}
 	});
-	this.hotspotToRoomRelax.rectMesh.position.y -= 5;
+	
+	this.navigationArrowToConferenceRoom = new NavigationArrow(scene, {
+			degree: 218,
+			verticalOffset: 0,
+			onFocus: function(){
+				// remove the room
+				//roomBack.remove();
+				// Start a new room
+				alert('TODO')
+				//new RoomRelax(scene);
+				//scene.rotation.y += 750;
+			}
+	});
 	
 	// parts	
 	if (!scene.hasPart(4)){
 	
 		THREE.ImageUtils.loadTexture('images/part4_.png', undefined, function(texture){
 			roomBack.part4 = new DetailImage(scene, texture, {
-				scale: 8,
+				scale: 60,
 				degree: 6,
 				verticalDegree: -16,
-				radius: 30 * SCALE,
+				radius: 5 * SCALE,
 				onFocus: function(){
 					this.remove();	
 					scene.addPart(4);
@@ -97,15 +80,21 @@ function RoomBack(scene){
 		scene.add( android );
 	} );
 	*/
+	/*
+	this.slideshow = new Slideshow(scene, {
+		scale: 100,
+		degree: 0,
+		verticalDegree: 0,
+		radius: (5 * SCALE)
+	});
+	*/
 	this.remove = function(){
 		this.photoSphere.remove();
 		
-		this.hotspotToRoomWorkplaces.remove();
-		this.hotspotToRoomRelax.remove();
-		
+		this.navigationArrowToWorkplaces.remove();
+		this.navigationArrowToRelax.remove();
+		this.navigationArrowToConferenceRoom.remove();
 		this.textLights.remove();
-		this.arrowToRoomWorkplaces.remove();
-		this.arrowToRoomRelax.remove();
 		
 		/*
 		this.textLights.remove();

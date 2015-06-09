@@ -4,7 +4,7 @@ function MainController() {
 	
 	var scene = this;
 
-	scene.showHotspots = false;
+	scene.showHotspots = true;
 	scene.showStats = false;
 	
 	if (scene.showStats){
@@ -70,7 +70,7 @@ function lookToClick() {
 MainController.prototype = Object.create(THREE.Object3D.prototype);
 MainController.prototype.constructor = MainController;
 
-var TTL = 100;
+var TTL = 50;
 MainController.prototype.findIntersections = function() {
 
 	var gaze = new THREE.Vector3(0, 0, 1);

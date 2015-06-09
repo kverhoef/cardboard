@@ -6,28 +6,15 @@ RoomArrival.prototype = Object.create(THREE.Object3D.prototype);
 		var roomArrival = this;
 		scene.room = this;
 		
-		this.photoSphere = new PhotoSphere(scene, 'images/PANO_arrival.jpg');
+		this.photoSphere = new PhotoSphere(scene, 'images/rooms/PANO_Werkplekken.jpg');
 		
 		this.textLights = new TextLights(scene, {});
 	
-		this.arrowToEntrence = new Textbox(scene, {
-			lookAt: new THREE.Vector3( cardboard.camera.position.x, -300, cardboard.camera.position.z ),
-			text: "V",
-			radius: 5 * SCALE,
-			degree: 66,
-			verticalDegree: -10,
-			color: 0x000000,
-			size: 5
-		});
-		
-		this.hotspotToEntrence = new Hotspot(scene, {
-			rectLength: 5, 
-			rectWidth: 11, 
-			degree: 86,
-			verticalDegree: 0,
-			radius: 5 * SCALE,
-			showHotspot: scene.showHotspots,
+		this.navigationArrowToEntrence = new NavigationArrow(scene, {
+			degree: 36,
+			verticalOffset: 0,
 			onFocus: function(){
+					
 					// remove the room
 					roomArrival.remove();
 					// Start a new room
@@ -35,42 +22,63 @@ RoomArrival.prototype = Object.create(THREE.Object3D.prototype);
 					scene.rotation.y -= 250;
 			}
 		});
-		this.hotspotToEntrence.rectMesh.position.y -= 5;
 		
-		this.arrowToWorkplacesFront = new Textbox(scene, {
-			lookAt: new THREE.Vector3( cardboard.camera.position.x, -300, cardboard.camera.position.z ),
-			text: "V",
-			radius: 5 * SCALE,
-			degree: 185,
-			verticalDegree: -10,
-			color: 0x000000,
-			size: 5
-		});
-		
-		this.hotspotToWorkplacesFront = new Hotspot(scene, {
-			rectLength: 5, 
-			rectWidth: 11, 
-			degree: 204,
-			verticalDegree: 0,
-			radius: 5 * SCALE,
-			showHotspot: scene.showHotspots,
+		this.navigationArrowToManager = new NavigationArrow(scene, {
+			degree: 66,
+			verticalOffset: 0,
 			onFocus: function(){
+					alert('TODO')
 					// remove the room
-					roomArrival.remove();
+					//roomArrival.remove();
 					// Start a new room
-					new RoomWorkplacesFront(scene);
+					//new RoomEntrence(scene);
+					//scene.rotation.y -= 250;
 			}
 		});
-		this.hotspotToWorkplacesFront.rectMesh.position.y -= 5;
 		
+		this.navigationArrowToOffice = new NavigationArrow(scene, {
+			degree: 142,
+			verticalOffset: 0,
+			onFocus: function(){
+					alert('TODO')
+					// remove the room
+					//roomArrival.remove();
+					// Start a new room
+					//new RoomEntrence(scene);
+					//scene.rotation.y -= 250;
+			}
+		});
+	
+		this.navigationArrowToRelax = new NavigationArrow(scene, {
+			degree: 165,
+			verticalOffset: 0,
+			onFocus: function(){
+				// remove the room
+				roomArrival.remove();
+				// Start a new room
+				new RoomRelax(scene);
+			}
+		});
+		
+		this.navigationArrowToWorkplaces = new NavigationArrow(scene, {
+			degree: 195,
+			verticalOffset: 0,
+			onFocus: function(){
+				// remove the room
+				roomArrival.remove();
+				// Start a new room
+				new RoomWorkplaces(scene);
+			}
+		});
+	
 		if (!scene.hasPart(2)){
 	
 			THREE.ImageUtils.loadTexture('images/part2_.png', undefined, function(texture){
 				roomArrival.part2 = new DetailImage(scene, texture, {
-					scale: 20,
+					scale: 100,
 					degree: 0,
 					verticalDegree: -38,
-					radius: 30 * SCALE,
+					radius: 5 * SCALE,
 					onFocus: function(){
 						this.remove();	
 						scene.addPart(2);
@@ -83,12 +91,12 @@ RoomArrival.prototype = Object.create(THREE.Object3D.prototype);
 		
 		this.remove = function(){
 			this.photoSphere.remove();
-			this.hotspotToEntrence.remove();
-			this.hotspotToWorkplacesFront.remove();
 			
-			this.textLights.remove();
-			this.arrowToEntrence.remove();
-			this.arrowToWorkplacesFront.remove();
+			this.navigationArrowToEntrence.remove();
+			this.navigationArrowToRelax.remove();
+			this.navigationArrowToOffice.remove();
+			this.navigationArrowToManager.remove();
+			this.navigationArrowToWorkplaces.remove();
 			
 			// part
 			if (roomArrival.part2 != undefined){

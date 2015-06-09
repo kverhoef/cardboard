@@ -6,73 +6,44 @@ function RoomRelax(scene){
 	var roomRelax = this;
 	scene.room = this;
 	
-	this.photoSphere = new PhotoSphere(scene, 'images/PANO_relax.jpg');
+	this.photoSphere = new PhotoSphere(scene, 'images/rooms/PANO_Banken.jpg');
 	
 	this.textLights = new TextLights(scene, {});
 	
-	this.arrowToRoomWorkplacesFront = new Textbox(scene, {
-		lookAt: new THREE.Vector3( cardboard.camera.position.x, -300, cardboard.camera.position.z ),
-		text: "V",
-		radius: 5 * SCALE,
-		degree: 75,
-		verticalDegree: -10,
-		color: 0x000000,
-		size: 5
-	});
 	
-	this.hotspotToRoomWorkplacesFront = new Hotspot(scene, {
-		rectLength: 5, 
-		rectWidth: 9, 
-		degree: 93,
-		verticalDegree: 0,
-		radius: 5 * SCALE,
-		showHotspot: scene.showHotspots,
+	this.navigationArrowToRelax = new NavigationArrow(scene, {
+		degree: 75,
+		verticalOffset: 0,
 		onFocus: function(){
-				// remove the room
-				roomRelax.remove();
-				// Start a new room
-				new RoomWorkplacesFront(scene);
-				scene.rotation.y += 800;
+			// remove the room
+			roomRelax.remove();
+			// Start a new room
+			new RoomArrival(scene);
+			scene.rotation.y += 800;
 		}
 	});
-	this.hotspotToRoomWorkplacesFront.rectMesh.position.y -= 5;
 	
-	this.arrowToRoomBack = new Textbox(scene, {
-		lookAt: new THREE.Vector3( cardboard.camera.position.x, -300, cardboard.camera.position.z ),
-		text: "V",
-		radius: 5 * SCALE,
-		degree: 274,
-		verticalDegree: -10,
-		color: 0x000000,
-		size: 5
-	});
-	
-	this.hotspotToRoomBack = new Hotspot(scene, {
-		rectLength: 5, 
-		rectWidth: 9, 
-		degree: 290,
-		verticalDegree: 0,
-		radius: 5 * SCALE,
-		showHotspot: scene.showHotspots,
+	this.navigationArrowToBack = new NavigationArrow(scene, {
+		degree: 280,
+		verticalOffset: 0,
 		onFocus: function(){
-				// remove the room
+			// remove the room
 				roomRelax.remove();
 				// Start a new room
 				new RoomBack(scene);
 				scene.rotation.y -= 750;
 		}
 	});
-	this.hotspotToRoomBack.rectMesh.position.y -= 5;
 	
 	// parts
 	if (!scene.hasPart(5)){
 	
 		THREE.ImageUtils.loadTexture('images/part5_.png', undefined, function(texture){
 			roomRelax.part5 = new DetailImage(scene, texture, {
-				scale: 20,
+				scale: 120,
 				degree: 0,
 				verticalDegree: -45,
-				radius: 30 * SCALE,
+				radius: 5 * SCALE,
 				onFocus: function(){
 					this.remove();	
 					scene.addPart(5);
@@ -85,59 +56,60 @@ function RoomRelax(scene){
 	
 	THREE.ImageUtils.loadTexture('images/luminis1.png', undefined, function(texture){
 		roomRelax.luminis1 = roomRelax.detail = new DetailImage(scene, texture, {
-			scale: 40,
+			scale: 100,
 			degree: 0,
 			verticalDegree: 0,
-			radius: 10 * SCALE
+			radius: 5 * SCALE
 		});
 	});
 	
 	THREE.ImageUtils.loadTexture('images/luminis2.png', undefined, function(texture){
 		roomRelax.luminis2 = roomRelax.detail = new DetailImage(scene, texture, {
-			scale: 40,
+			scale: 100,
 			degree: 60,
 			verticalDegree: 0,
-			radius: 10 * SCALE
+			radius: 5 * SCALE
 		});
 	});
 	
 	THREE.ImageUtils.loadTexture('images/luminis3.png', undefined, function(texture){
 		roomRelax.luminis3 = roomRelax.detail = new DetailImage(scene, texture, {
-			scale: 40,
+			scale: 100,
 			degree: 120,
 			verticalDegree: 0,
-			radius: 10 * SCALE
+			radius: 5 * SCALE
 		});
 	});
 	
 	THREE.ImageUtils.loadTexture('images/luminis4.png', undefined, function(texture){
 		roomRelax.luminis4 = roomRelax.detail = new DetailImage(scene, texture, {
-			scale: 40,
+			scale: 100,
 			degree: 180,
 			verticalDegree: 0,
-			radius: 10 * SCALE
+			radius: 5 * SCALE
 		});
 	});
 	
 	THREE.ImageUtils.loadTexture('images/luminis5.png', undefined, function(texture){
 		roomRelax.luminis5 = roomRelax.detail = new DetailImage(scene, texture, {
-			scale: 40,
+			scale: 100,
 			degree: 240,
 			verticalDegree: 0,
-			radius: 10 * SCALE
+			radius: 5 * SCALE
 		});
 	});
 	
 	THREE.ImageUtils.loadTexture('images/luminis6.png', undefined, function(texture){
 		roomRelax.luminis6 = roomRelax.detail = new DetailImage(scene, texture, {
-			scale: 40,
+			scale: 100,
 			degree: 300,
 			verticalDegree: 0,
-			radius: 10 * SCALE
+			radius: 5 * SCALE
 		});
 	});
 	
 	scene.updatables.push(function(){
+		
 		var orbitTheta = cardboard.orbitControls.theta;
 		if (roomRelax.luminis1 != undefined){
 			// reverse theta to degree
@@ -175,6 +147,7 @@ function RoomRelax(scene){
 			roomRelax.luminis6.args.degree = roomRelax.luminis6.degree + -degrees;
 			roomRelax.luminis6.updatePosition();
 		}
+		
 	});
 	
 	this.remove = function(){
@@ -187,12 +160,10 @@ function RoomRelax(scene){
 		this.luminis5.remove();
 		this.luminis6.remove();
 		
-		this.hotspotToRoomWorkplacesFront.remove();
-		this.hotspotToRoomBack.remove();
+		this.navigationArrowToRelax.remove();
+		this.navigationArrowToBack.remove();
 
 		this.textLights.remove();
-		this.arrowToRoomBack.remove();
-		this.arrowToRoomWorkplacesFront.remove();
 		
 		// part
 		if (this.part5 != undefined){

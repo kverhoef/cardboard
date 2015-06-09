@@ -54,8 +54,6 @@ function DetailImage(rootThis, texture, args) {
 	this.onFocus = args.onFocus;
 	this.onBlur = args.onBlur;
 	
-	
-
 }
 
 
