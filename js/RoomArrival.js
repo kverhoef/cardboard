@@ -36,19 +36,19 @@ RoomArrival.prototype = Object.create(THREE.Object3D.prototype);
 			}
 		});
 		
-		this.navigationArrowToOffice = new NavigationArrow(scene, {
+		this.navigationArrowToIne = new NavigationArrow(scene, {
 			degree: 142,
 			verticalOffset: 4,
 			onFocus: function(){
-					alert('TODO')
-					// remove the room
-					//roomArrival.remove();
-					// Start a new room
-					//new RoomEntrence(scene);
-					//scene.rotation.y -= 250;
+				
+				// remove the room
+				roomArrival.remove();
+				// Start a new room
+				new RoomIne(scene);
+				scene.rotation.y -= 250;
 			}
 		});
-		this.navigationArrowToOffice.arrow.textMesh.rotation.y += 0.2
+		this.navigationArrowToIne.arrow.textMesh.rotation.y += 0.2
 	
 		this.navigationArrowToRelax = new NavigationArrow(scene, {
 			degree: 165,
@@ -99,7 +99,7 @@ RoomArrival.prototype = Object.create(THREE.Object3D.prototype);
 			
 			this.navigationArrowToEntrence.remove();
 			this.navigationArrowToRelax.remove();
-			this.navigationArrowToOffice.remove();
+			this.navigationArrowToIne.remove();
 			this.navigationArrowToChef.remove();
 			this.navigationArrowToWorkplaces.remove();
 			
