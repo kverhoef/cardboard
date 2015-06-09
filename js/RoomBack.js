@@ -39,9 +39,10 @@ function RoomBack(scene){
 			verticalOffset: 0,
 			onFocus: function(){
 				// remove the room
-				//roomBack.remove();
+				roomBack.remove();
 				// Start a new room
-				alert('TODO')
+                new RoomConference(scene);
+                scene.rotation.y += 750;
 				//new RoomRelax(scene);
 				//scene.rotation.y += 750;
 			}

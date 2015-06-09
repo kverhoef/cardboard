@@ -29,9 +29,7 @@ RoomConference.prototype.constructor = RoomConference;
                 verticalDegree: -44,
                 radius: 14 * SCALE
             });
-            //room.whiteboard.mesh.position.y += 40;
             room.whiteboard.mesh.rotation.z = -0.12;
-//            room.whiteboard.mesh.rotation.y = -0.5;
             room.whiteboard.mesh.rotation.x = -1;
         });
 
