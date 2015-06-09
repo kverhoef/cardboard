@@ -12,30 +12,30 @@ function RoomIne(scene){
 	
 	THREE.ImageUtils.loadTexture('images/OTIB/skillsatschool.jpg', undefined, function(texture){
 			roomIne.part1 = new DetailImage(scene, texture, {
-				scale: 44,
+				scale: 88,
 				degree: 177,
 				verticalDegree: 348,
-				radius: 30 * SCALE,				
+				radius: 15 * SCALE,				
 			});
 			roomIne.part1.mesh.rotation.z = 0.17;
 		});
 	
 	THREE.ImageUtils.loadTexture('images/OTIB/kennishuis.png', undefined, function(texture){
 			roomIne.part1 = new DetailImage(scene, texture, {
-				scale: 45,
+				scale: 90,
 				degree: 138,
 				verticalDegree: 356,
-				radius: 30 * SCALE,				
+				radius: 15 * SCALE,				
 			});
 			roomIne.part1.mesh.rotation.z = 0.25;
 		});
 		
 	THREE.ImageUtils.loadTexture('images/OTIB/OTIB_Logo.png', undefined, function(texture){
 			roomIne.part2 = new DetailImage(scene, texture, {
-				scale: 14,
+				scale: 28,
 				degree: 320,
 				verticalDegree: 10,
-				radius: 30 * SCALE,								
+				radius: 15 * SCALE,								
 			});
 			roomIne.part2.mesh.rotation.z = 50;
 		});						
