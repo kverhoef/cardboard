@@ -41,7 +41,7 @@ function RoomRelax(scene){
 		THREE.ImageUtils.loadTexture('images/part5_.png', undefined, function(texture){
 			roomRelax.part5 = new DetailImage(scene, texture, {
 				scale: 120,
-				degree: 0,
+				degree: 180,
 				verticalDegree: -45,
 				radius: 5 * SCALE,
 				onFocus: function(){
