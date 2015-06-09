@@ -16,8 +16,8 @@ function NavigationArrow(rootThis, args) {
 	
 	this.hotspot = new Hotspot(rootThis, {
 		rectLength: 5, 
-		rectWidth: 11, 
-		degree: args.degree + 20,
+		rectWidth: 6, 
+		degree: args.degree + 11,
 		radius: 5 * SCALE,
 		verticalDegree: 0,
 		showHotspot: rootThis.showHotspots,

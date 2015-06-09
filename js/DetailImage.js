@@ -1,8 +1,6 @@
 DetailImage.prototype = Object.create(THREE.Object3D.prototype);
 DetailImage.prototype.constructor = DetailImage;
 
-
-
 function DetailImage(rootThis, texture, args) {
 	THREE.Object3D.call(this);
 

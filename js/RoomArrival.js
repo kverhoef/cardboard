@@ -19,12 +19,12 @@ RoomArrival.prototype = Object.create(THREE.Object3D.prototype);
 					roomArrival.remove();
 					// Start a new room
 					new RoomEntrence(scene);
-					scene.rotation.y -= 250;
+					scene.rotation.y += 1000;
 			}
 		});
 		
 		this.navigationArrowToManager = new NavigationArrow(scene, {
-			degree: 66,
+			degree: 61,
 			verticalOffset: 0,
 			onFocus: function(){
 					alert('TODO')
@@ -38,7 +38,7 @@ RoomArrival.prototype = Object.create(THREE.Object3D.prototype);
 		
 		this.navigationArrowToOffice = new NavigationArrow(scene, {
 			degree: 142,
-			verticalOffset: 0,
+			verticalOffset: 4,
 			onFocus: function(){
 					alert('TODO')
 					// remove the room
@@ -48,10 +48,11 @@ RoomArrival.prototype = Object.create(THREE.Object3D.prototype);
 					//scene.rotation.y -= 250;
 			}
 		});
+		this.navigationArrowToOffice.arrow.textMesh.rotation.y += 0.2
 	
 		this.navigationArrowToRelax = new NavigationArrow(scene, {
 			degree: 165,
-			verticalOffset: 0,
+			verticalOffset: 4,
 			onFocus: function(){
 				// remove the room
 				roomArrival.remove();
@@ -59,17 +60,21 @@ RoomArrival.prototype = Object.create(THREE.Object3D.prototype);
 				new RoomRelax(scene);
 			}
 		});
+		this.navigationArrowToRelax.arrow.textMesh.rotation.y += 0.2
 		
 		this.navigationArrowToWorkplaces = new NavigationArrow(scene, {
 			degree: 195,
-			verticalOffset: 0,
+			verticalOffset: 4,
 			onFocus: function(){
 				// remove the room
 				roomArrival.remove();
 				// Start a new room
 				new RoomWorkplaces(scene);
+				
+				scene.rotation.y += 300;
 			}
 		});
+		this.navigationArrowToWorkplaces.arrow.textMesh.rotation.y += 0.2
 	
 		if (!scene.hasPart(2)){
 	
@@ -97,6 +102,8 @@ RoomArrival.prototype = Object.create(THREE.Object3D.prototype);
 			this.navigationArrowToOffice.remove();
 			this.navigationArrowToManager.remove();
 			this.navigationArrowToWorkplaces.remove();
+			
+			this.textLights.remove();
 			
 			// part
 			if (roomArrival.part2 != undefined){
