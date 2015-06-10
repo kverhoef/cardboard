@@ -11,8 +11,7 @@ RoomSales.prototype = Object.create(THREE.Object3D.prototype);
 		
 		this.textLights = new TextLights(scene, {});		
 		
-		//OK
-		THREE.ImageUtils.loadTexture('images/finext/finext_logo.jpg', undefined, function(texture){
+		THREE.ImageUtils.loadTexture('images/finext/finext_logo.png', undefined, function(texture){
 			room.whiteboard = new DetailImage(scene, texture, {
 				scale: 120,
 				degree: 163,
@@ -33,7 +32,6 @@ RoomSales.prototype = Object.create(THREE.Object3D.prototype);
 			});
 			room.scherm3.mesh.rotation.y = 0;//.15;
 			room.scherm3.mesh.rotation.x = 0;
-		//	room.scherm3.mesh.rotation.z = 0.07;
 		});
 		
 		THREE.ImageUtils.loadTexture('images/finext/scherm1.png', undefined, function(texture){
@@ -47,7 +45,6 @@ RoomSales.prototype = Object.create(THREE.Object3D.prototype);
 			room.scherm1.mesh.rotation.y = 0.05;
 		});
 		
-		//OK
 		THREE.ImageUtils.loadTexture('images/finext/scherm2.png', undefined, function(texture){
 			room.scherm2 = new DetailImage(scene, texture, {
 				scale: 45,
