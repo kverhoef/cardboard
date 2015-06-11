@@ -14,6 +14,7 @@ function GameRoom(scene){
 	this.bestScore = 0;
 	this.score = 0;
 	
+	/*
 	this.authorTextbox = new Textbox(scene, {
 		text: "Author: Kevin Verhoef",
 		radius: 3 * SCALE,
@@ -26,7 +27,7 @@ function GameRoom(scene){
 		material: new THREE.MeshBasicMaterial({ color: 0x000000, shading: THREE.SmoothShading } ),
 		height: 0.01
 	});
-	
+	*/
 	this.showStartButton = function(){
 	
 		THREE.ImageUtils.loadTexture('images/start.png', undefined, function(texture){

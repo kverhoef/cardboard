@@ -110,7 +110,7 @@ function RoomRelax(scene){
 	
 	scene.updatables.push(function(){
 		
-		var orbitTheta = cardboard.orbitControls.theta;
+		var orbitTheta = cardboard.theta;
 		if (roomRelax.luminis1 != undefined){
 			// reverse theta to degree
 			var degrees = (orbitTheta * 180/Math.PI) + 180;
