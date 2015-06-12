@@ -6,7 +6,7 @@ function NavigationArrow(rootThis, args) {
 
 	this.arrow = new Textbox(rootThis, {
 		lookAt: new THREE.Vector3( cardboard.camera.position.x, -300, cardboard.camera.position.z ),
-		text: "V",
+		text: "v",
 		radius: 5 * SCALE,
 		degree: args.degree,
 		verticalDegree: -10,
@@ -15,9 +15,9 @@ function NavigationArrow(rootThis, args) {
 	});
 	
 	this.hotspot = new Hotspot(rootThis, {
-		rectLength: 5, 
-		rectWidth: 6, 
-		degree: args.degree + 11,
+		rectLength: 4, 
+		rectWidth: 5, 
+		degree: args.degree + 9,
 		radius: 5 * SCALE,
 		verticalDegree: 0,
 		showHotspot: rootThis.showHotspots,
