@@ -54,7 +54,7 @@ function RoomRelax(scene){
 	}
 	
 	
-	THREE.ImageUtils.loadTexture('images/luminis1.png', undefined, function(texture){
+	THREE.ImageUtils.loadTexture('images/luminis/luminis1.png', undefined, function(texture){
 		roomRelax.luminis1 = roomRelax.detail = new DetailImage(scene, texture, {
 			scale: 100,
 			degree: 0,
@@ -63,7 +63,7 @@ function RoomRelax(scene){
 		});
 	});
 	
-	THREE.ImageUtils.loadTexture('images/luminis2.png', undefined, function(texture){
+	THREE.ImageUtils.loadTexture('images/luminis/luminis2.png', undefined, function(texture){
 		roomRelax.luminis2 = roomRelax.detail = new DetailImage(scene, texture, {
 			scale: 100,
 			degree: 60,
@@ -72,7 +72,7 @@ function RoomRelax(scene){
 		});
 	});
 	
-	THREE.ImageUtils.loadTexture('images/luminis3.png', undefined, function(texture){
+	THREE.ImageUtils.loadTexture('images/luminis/luminis3.png', undefined, function(texture){
 		roomRelax.luminis3 = roomRelax.detail = new DetailImage(scene, texture, {
 			scale: 100,
 			degree: 120,
@@ -81,7 +81,7 @@ function RoomRelax(scene){
 		});
 	});
 	
-	THREE.ImageUtils.loadTexture('images/luminis4.png', undefined, function(texture){
+	THREE.ImageUtils.loadTexture('images/luminis/luminis4.png', undefined, function(texture){
 		roomRelax.luminis4 = roomRelax.detail = new DetailImage(scene, texture, {
 			scale: 100,
 			degree: 180,
@@ -90,7 +90,7 @@ function RoomRelax(scene){
 		});
 	});
 	
-	THREE.ImageUtils.loadTexture('images/luminis5.png', undefined, function(texture){
+	THREE.ImageUtils.loadTexture('images/luminis/luminis5.png', undefined, function(texture){
 		roomRelax.luminis5 = roomRelax.detail = new DetailImage(scene, texture, {
 			scale: 100,
 			degree: 240,
@@ -99,7 +99,7 @@ function RoomRelax(scene){
 		});
 	});
 	
-	THREE.ImageUtils.loadTexture('images/luminis6.png', undefined, function(texture){
+	THREE.ImageUtils.loadTexture('images/luminis/luminis6.png', undefined, function(texture){
 		roomRelax.luminis6 = roomRelax.detail = new DetailImage(scene, texture, {
 			scale: 100,
 			degree: 300,
