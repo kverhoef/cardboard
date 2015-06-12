@@ -1,14 +1,9 @@
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Roboto Regular'), local('Roboto-Regular'), url(http://fonts.gstatic.com/s/roboto/v14/2UX7WLTfW3W8TclTUvlFyQ.woff) format('woff');
-}
 
 body {
   margin: 0px;
   background-color: #000;
   overflow: hidden;
+  font-family:verdana,​sans-serif;
 }
 #shade, #scene {
   position: absolute;

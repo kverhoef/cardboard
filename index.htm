@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Chrome Experiments for Cardboard</title>
+		<title>Luminis Cardboard Experiment</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link href="css/css.css" rel="stylesheet" type="text/css">
 	</head>
 <body>
 
-<div id="scene"></div>
+<div id="scene">
+	<div id="startButton" style="color:white;height:100%;cursor:pointer;">
+		<center>
+		<h1 style="margin:5px;margin-top:20px;">Luminis Cardboard Experiment</h1>
+		<p style="margin:10px;margin-bottom:20px;">Put your phone into the cardboard and click anywhere when ready.</p>
+		<img src="images/cardboard.gif" style="max-width: 25%;" />
+		</center>
+	</div>
+</div>
 
 <script src="js/external/jquery-2.1.1.min.js"></script>
 <script src="js/external/three.min.js"></script>
+<script src="js/external/NoSleep.min.js"></script>
 <script src="js/external/helvetiker_regular.typeface.js"></script>
 <script src="js/StereoEffect.js"></script>
 <script src="js/DeviceOrientationControls.js"></script>
@@ -59,7 +68,10 @@ $(function() {
 var cardboard, mainController, cursor;
 
 function setup() {
-
+	
+	
+	
+	
 	cardboard = new Cardboard();
 
 	mainController = new MainController();
@@ -91,10 +103,16 @@ function setup() {
 	root.Cursor = Cursor;
 	
 }
-
-setup();
+$("#startButton").on("click", function(){
+	var noSleep = new NoSleep();
+	noSleep.enable();
+	$(this).remove();
+	setup();
+});
+//setup();
 
 </script>
+
 
 </body>
 </html>
