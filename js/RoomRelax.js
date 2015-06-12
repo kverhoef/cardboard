@@ -11,7 +11,7 @@ function RoomRelax(scene){
 	this.textLights = new TextLights(scene, {});
 	
 	
-	this.navigationArrowToRelax = new NavigationArrow(scene, {
+	this.navigationArrowToArrival = new NavigationArrow(scene, {
 		degree: 75,
 		verticalOffset: 0,
 		onFocus: function(){
@@ -24,14 +24,25 @@ function RoomRelax(scene){
 	});
 	
 	this.navigationArrowToBack = new NavigationArrow(scene, {
-		degree: 280,
-		verticalOffset: 0,
+		degree: 290,
+		verticalOffset: -5,
 		onFocus: function(){
 			// remove the room
 				roomRelax.remove();
 				// Start a new room
 				new RoomBack(scene);
 				scene.rotation.y -= 750;
+		}
+	});
+	
+	this.navigationArrowToSales = new NavigationArrow(scene, {
+		degree: 268,
+		verticalOffset: -5,
+		onFocus: function(){
+			// remove the room
+				roomRelax.remove();
+				// Start a new room
+				new RoomSales(scene);
 		}
 	});
 	
@@ -160,8 +171,9 @@ function RoomRelax(scene){
 		this.luminis5.remove();
 		this.luminis6.remove();
 		
-		this.navigationArrowToRelax.remove();
-		this.navigationArrowToBack.remove();
+		this.navigationArrowToArrival.remove();
+		this.navigationArrowToBack.remove();	
+		this.navigationArrowToSales.remove();
 
 		this.textLights.remove();
 		

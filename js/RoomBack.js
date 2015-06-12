@@ -395,13 +395,25 @@ function RoomBack(scene){
 	});
 	
 	this.navigationArrowToRelax = new NavigationArrow(scene, {
-			degree: 184,
+			degree: 176,
 			verticalOffset: 0,
 			onFocus: function(){
 				// remove the room
 				roomBack.remove();
 				// Start a new room
 				new RoomRelax(scene);
+				scene.rotation.y += 750;
+			}
+	});
+	
+	this.navigationArrowToSales = new NavigationArrow(scene, {
+			degree: 195,
+			verticalOffset: 0,
+			onFocus: function(){
+				// remove the room
+				roomBack.remove();
+				// Start a new room
+				new RoomSales(scene);
 				scene.rotation.y += 750;
 			}
 	});
@@ -466,6 +478,7 @@ function RoomBack(scene){
 		
 		this.navigationArrowToWorkplaces.remove();
 		this.navigationArrowToRelax.remove();
+		this.navigationArrowToSales.remove();
 		this.navigationArrowToConferenceRoom.remove();
 		this.textLights.remove();
 		
