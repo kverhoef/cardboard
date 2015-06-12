@@ -57,15 +57,16 @@ RoomSales.prototype = Object.create(THREE.Object3D.prototype);
 			//room.scherm2.mesh.rotation.z = 0.13;
 		});
 		
-		this.navigationArrowToArrival = new NavigationArrow(scene, {
-			degree: -53,
+		this.navigationArrowToBack = new NavigationArrow(scene, {
+			degree: -33,
 			verticalOffset: 0,
 			onFocus: function(){
 				// remove the room
 				room.remove();
 				// Start a new room
-				new RoomArrival(scene);
-				scene.rotation.y += 250;
+				new RoomBack(scene);
+// 				scene.rotation.y += 250;
+				scene.rotation.y -= 750;				
 			}
 		});
 		
@@ -74,7 +75,7 @@ RoomSales.prototype = Object.create(THREE.Object3D.prototype);
 
 			this.textLights.remove();
 			
-			this.navigationArrowToArrival.remove();
+			this.navigationArrowToBack.remove();
 			
 			if (room.scherm1 != undefined){
 				room.scherm1.remove();
