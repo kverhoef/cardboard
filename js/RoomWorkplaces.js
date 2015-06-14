@@ -30,10 +30,10 @@ function RoomWorkplaces(scene){
 				roomWorkplaces.remove();
 				// Start a new room
 				new RoomBack(scene);
-				scene.rotation.y -= 650;
+				scene.rotation.y -= 1;
 			}
 	});
-	
+
 	if (!scene.hasPart(3)){
 	
 		THREE.ImageUtils.loadTexture('images/part3_.png', undefined, function(texture){

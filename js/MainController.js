@@ -4,7 +4,7 @@ function MainController() {
 	
 	var scene = this;
 
-	scene.showHotspots = true;
+	scene.showHotspots = false;
 	scene.showStats = false;
 	
 	if (scene.showStats){
@@ -21,7 +21,7 @@ function MainController() {
 	}
 	
 	// Start the first room
-	var room1 = new RoomSales(scene);
+	var room1 = new RoomIne(scene);
 
 	scene.add(room1);
 	

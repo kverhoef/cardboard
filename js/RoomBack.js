@@ -389,8 +389,8 @@ function RoomBack(scene){
 				// remove the room
 				roomBack.remove();
 				// Start a new room
-				new roomBack(scene);
-				scene.rotation.y += 750;
+				new RoomWorkplaces(scene);
+				scene.rotation.y += 1000;
 			}
 	});
 	
@@ -402,7 +402,7 @@ function RoomBack(scene){
 				roomBack.remove();
 				// Start a new room
 				new RoomRelax(scene);
-				scene.rotation.y += 750;
+				scene.rotation.y += 950;
 			}
 	});
 	
@@ -414,7 +414,7 @@ function RoomBack(scene){
 				roomBack.remove();
 				// Start a new room
 				new RoomSales(scene);
-				scene.rotation.y += 750;
+				scene.rotation.y += 950;
 			}
 	});
 	
@@ -426,9 +426,7 @@ function RoomBack(scene){
 				roomBack.remove();
 				// Start a new room
                 new RoomConference(scene);
-                scene.rotation.y += 750;
-				//new RoomRelax(scene);
-				//scene.rotation.y += 750;
+                scene.rotation.y += 1050;
 			}
 	});
 	
@@ -438,8 +436,8 @@ function RoomBack(scene){
 		THREE.ImageUtils.loadTexture('images/part4_.png', undefined, function(texture){
 			roomBack.part4 = new DetailImage(scene, texture, {
 				scale: 60,
-				degree: 6,
-				verticalDegree: -16,
+				degree: -20,
+				verticalDegree: -12,
 				radius: 5 * SCALE,
 				onFocus: function(){
 					this.remove();	

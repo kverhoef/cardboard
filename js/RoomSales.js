@@ -16,7 +16,8 @@ RoomSales.prototype = Object.create(THREE.Object3D.prototype);
 				scale: 120,
 				degree: 163,
 				verticalDegree: -35,
-				radius: 12.5 * SCALE,
+				radius: 12.5 * SCALE
+				
 			});
 			room.whiteboard.mesh.rotation.y = 0.5;
 			room.whiteboard.mesh.rotation.x = -0.02;
@@ -29,6 +30,17 @@ RoomSales.prototype = Object.create(THREE.Object3D.prototype);
 				degree: 50,
 				verticalDegree: 13.5,
 				radius: 12.5 * SCALE,
+				onFocus: function() {
+					new DetailImage(scene, texture, {
+						scale: 20,
+						degree: 50,
+						verticalDegree: 13.5,
+						radius: 8 * SCALE,
+						onBlur: function() {
+							this.remove();
+						}
+					});
+				}
 			});
 			room.scherm3.mesh.rotation.y = 0;//.15;
 			room.scherm3.mesh.rotation.x = 0;
@@ -37,12 +49,23 @@ RoomSales.prototype = Object.create(THREE.Object3D.prototype);
 		THREE.ImageUtils.loadTexture('images/finext/scherm1.png', undefined, function(texture){
 			room.scherm1 = new DetailImage(scene, texture, {
 				scale: 50,
-				degree: 155,
+				degree: 135,
 				verticalDegree: 10,
 				radius: 12 * SCALE,
+				onFocus: function() {
+					new DetailImage(scene, texture, {
+						scale: 25,
+						degree: 135,
+						verticalDegree: 10,
+						radius: 8 * SCALE,
+						onBlur: function() {
+							this.remove();
+						}
+					});
+				}
 			});
-			room.scherm1.mesh.rotation.x = 0;
-			room.scherm1.mesh.rotation.y = 0.05;
+			//room.scherm1.mesh.rotation.x = 0;
+			//room.scherm1.mesh.rotation.y = 0.05;
 		});
 		
 		THREE.ImageUtils.loadTexture('images/finext/scherm2.png', undefined, function(texture){
@@ -51,6 +74,17 @@ RoomSales.prototype = Object.create(THREE.Object3D.prototype);
 				degree: 215,
 				verticalDegree: 6,
 				radius: 10 * SCALE,
+				onFocus: function() {
+					new DetailImage(scene, texture, {
+						scale: 25,
+						degree: 215,
+						verticalDegree: 6,
+						radius: 8 * SCALE,
+						onBlur: function() {
+							this.remove();
+						}
+					});
+				}
 			});
 			room.scherm2.mesh.rotation.y = 0.15;
 			room.scherm2.mesh.rotation.x = 0;
