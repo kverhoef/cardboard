@@ -110,7 +110,11 @@ MainController.prototype.findIntersections = function() {
 		var found = intersects[0];
 
 		if (!this.selected) {
-			window.navigator.vibrate(30);
+			try {
+				window.navigator.vibrate(30);
+			}
+			catch (e){}
+			
 			this.selected = {
 				id: found.object.uuid,
 				ttl: TTL,
