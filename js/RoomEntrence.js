@@ -40,6 +40,25 @@ function RoomEntrence(scene){
 		});
 		
 	}
+	
+	if (scene.hasAllParts()){
+
+		THREE.ImageUtils.loadTexture('images/pong.png', undefined, function(texture){
+			roomEntrence.pong = new DetailImage(scene, texture, {
+				scale: 20,
+				degree: -30,
+				verticalDegree: 0,
+				radius: 5 * SCALE,
+				onFocus: function(){
+					
+					scene.checkAllParts();
+					
+				}
+			});
+		});
+		
+	}
+	
 	this.remove = function(){
 		this.photoSphere.remove();
 		this.navigationArrowToArrival.remove();
@@ -50,6 +69,11 @@ function RoomEntrence(scene){
 		if (roomEntrence.part1 != undefined){
 			roomEntrence.part1.remove();
 		}
+		
+		if (roomEntrence.pong != undefined){
+			roomEntrence.pong.remove();
+		}
+		
 		
 		// remove self
 		scene.removeRoom(this);

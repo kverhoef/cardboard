@@ -21,7 +21,7 @@ function MainController() {
 	}
 	
 	// Start the first room
-	var room1 = new RoomIne(scene);
+	var room1 = new RoomEntrence(scene);
 
 	scene.add(room1);
 	
@@ -41,7 +41,8 @@ function lookToClick() {
 	this.intersectables = [];
 	this.updatables = [];
 	
-	this.parts = [];
+	this.parts = $.jStorage.get("parts", []);
+	
 	// adds a puzzle peace
 	this.addPart = function(part){
 		this.parts.push(part);
@@ -50,19 +51,35 @@ function lookToClick() {
 				
 			});
 		});
+		$.jStorage.set("parts", this.parts);
 	}
 	
 	this.hasPart = function(part){
 		return $.inArray( part, this.parts ) != -1;
 	}
 	
+	this.hasAllParts = function() {
+		return this.parts.length > 4;		
+	}
+	
 	this.checkAllParts = function(){
-		if (this.parts.length == 5){
+		if (this.hasAllParts()){
 			// remove the room
 			this.room.remove();
 			// Start a new room
 			this.rotation.y = 0;
 			new GameRoom(this);
+		}
+	}
+	
+	if (!this.hasAllParts()){
+	
+		for (var i=0;i<this.parts.length;i++) {
+			THREE.ImageUtils.loadTexture('images/part' + this.parts[i] + '.png', undefined, function(texture){
+				new Part(scene, texture, {
+					
+				});
+			});
 		}
 	}
 }

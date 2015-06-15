@@ -11,7 +11,7 @@ function GameRoom(scene){
 	var depthOffset = -20;
 	var batLine = -8;
 	
-	this.bestScore = 0;
+	this.bestScore =  $.jStorage.get("bestScore", 0);
 	this.score = 0;
 	
 	/*
@@ -53,7 +53,7 @@ function GameRoom(scene){
 	
 		room.bestScoreText = new Textbox(scene, {
 			text: "Best score: " + room.bestScore,
-			radius: 3 * SCALE,
+			radius: 2.9 * SCALE,
 			degree: 270,
 			verticalDegree: 0,
 			size: 1.5,
@@ -98,6 +98,7 @@ function GameRoom(scene){
 	
 		if (room.score > room.bestScore){
 			room.bestScore = room.score;
+			$.jStorage.set("bestScore", room.bestScore);
 		}
 		room.score = 0;
 		this.showBestscore();
