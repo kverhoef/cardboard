@@ -31,7 +31,7 @@ function RoomIne(scene){
 		roomIne.skillsatschool.mesh.rotation.z = 0.17;
 	});
 	
-	THREE.ImageUtils.loadTexture('images/OTIB/kennishuis.png', undefined, function(texture){
+	THREE.ImageUtils.loadTexture('images/OTIB/kennishuis.jpg', undefined, function(texture){
 		roomIne.kennishuis = new DetailImage(scene, texture, {
 			scale: 90,
 			degree: 138,

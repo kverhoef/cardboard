@@ -12,7 +12,7 @@ RoomConference.prototype.constructor = RoomConference;
 		this.textLights = new TextLights(scene, {});		
 		
 		
-		THREE.ImageUtils.loadTexture('images/monuta/monuta1.png', undefined, function(texture){
+		THREE.ImageUtils.loadTexture('images/monuta/monuta1.jpg', undefined, function(texture){
 			room.drupal = new DetailImage(scene, texture, {
 				scale: 60,
 				degree: 120,
