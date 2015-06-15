@@ -28,10 +28,10 @@ function RoomRelax(scene){
 		verticalOffset: -5,
 		onFocus: function(){
 			// remove the room
-				roomRelax.remove();
-				// Start a new room
-				new RoomBack(scene);
-				scene.rotation.y -= 750;
+			roomRelax.remove();
+			// Start a new room
+			new RoomBack(scene);
+			scene.rotation.y -= 750;
 		}
 	});
 	

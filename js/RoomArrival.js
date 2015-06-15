@@ -58,6 +58,8 @@ RoomArrival.prototype = Object.create(THREE.Object3D.prototype);
 				roomArrival.remove();
 				// Start a new room
 				new RoomRelax(scene);
+				
+				scene.rotation.y += 300;
 			}
 		});
 		this.navigationArrowToRelax.arrow.textMesh.rotation.y += 0.2

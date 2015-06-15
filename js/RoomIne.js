@@ -70,7 +70,7 @@ function RoomIne(scene){
 				roomIne.remove();
 				// Start a new room
 				new RoomArrival(scene);
-				scene.rotation.y += 250;
+				scene.rotation.y += 650;
 			}
 	});
 	
