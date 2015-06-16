@@ -1,5 +1,8 @@
 # Cardboard
-Cardboard navigable spheres with three.js
+Cardboard (VR) navigable spheres with Three.js.
 
 ## Example
-Put on your cardboard and head over to http://quanto.github.io/cardboard/.
+Put on your cardboard and head over to: http://quanto.github.io/cardboard/.
+
+Also available as Android app:
+https://build.phonegap.com/apps/1506969/share
