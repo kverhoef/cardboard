@@ -1,3 +1,5 @@
+![alt tag](https://raw.githubusercontent.com/quanto/cardboard/master/icon.png)
+
 # Cardboard
 Cardboard (VR) navigable spheres with Three.js.
 
