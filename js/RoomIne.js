@@ -15,17 +15,39 @@ function RoomIne(scene){
 			scale: 88,
 			degree: 177,
 			verticalDegree: 348,
-			radius: 15 * SCALE,				
+			radius: 15 * SCALE,		
+			onFocus: function() {
+				new DetailImage(scene, texture, {
+					scale: 55,
+					degree: 177,
+					verticalDegree: 348,
+					radius: 8 * SCALE,
+					onBlur: function() {
+						this.remove();
+					}
+				});
+			}
 		});
 		roomIne.skillsatschool.mesh.rotation.z = 0.17;
 	});
 	
-	THREE.ImageUtils.loadTexture('images/OTIB/kennishuis.png', undefined, function(texture){
+	THREE.ImageUtils.loadTexture('images/OTIB/kennishuis.jpg', undefined, function(texture){
 		roomIne.kennishuis = new DetailImage(scene, texture, {
 			scale: 90,
 			degree: 138,
 			verticalDegree: 356,
-			radius: 15 * SCALE,				
+			radius: 15 * SCALE,		
+			onFocus: function() {
+				new DetailImage(scene, texture, {
+					scale: 55,
+					degree: 138,
+					verticalDegree: 356,
+					radius: 8 * SCALE,
+					onBlur: function() {
+						this.remove();
+					}
+				});
+			}			
 		});
 		roomIne.kennishuis.mesh.rotation.z = 0.25;
 	});
@@ -35,7 +57,7 @@ function RoomIne(scene){
 			scale: 28,
 			degree: 320,
 			verticalDegree: 10,
-			radius: 15 * SCALE,								
+			radius: 15 * SCALE							
 		});
 		roomIne.otib.mesh.rotation.z = 50;
 	});	
@@ -48,7 +70,7 @@ function RoomIne(scene){
 				roomIne.remove();
 				// Start a new room
 				new RoomArrival(scene);
-				scene.rotation.y += 250;
+				scene.rotation.y += 650;
 			}
 	});
 	

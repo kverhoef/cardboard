@@ -11,7 +11,7 @@ function RoomRelax(scene){
 	this.textLights = new TextLights(scene, {});
 	
 	
-	this.navigationArrowToRelax = new NavigationArrow(scene, {
+	this.navigationArrowToArrival = new NavigationArrow(scene, {
 		degree: 75,
 		verticalOffset: 0,
 		onFocus: function(){
@@ -24,14 +24,25 @@ function RoomRelax(scene){
 	});
 	
 	this.navigationArrowToBack = new NavigationArrow(scene, {
-		degree: 280,
-		verticalOffset: 0,
+		degree: 290,
+		verticalOffset: -5,
+		onFocus: function(){
+			// remove the room
+			roomRelax.remove();
+			// Start a new room
+			new RoomBack(scene);
+			scene.rotation.y -= 750;
+		}
+	});
+	
+	this.navigationArrowToSales = new NavigationArrow(scene, {
+		degree: 268,
+		verticalOffset: -5,
 		onFocus: function(){
 			// remove the room
 				roomRelax.remove();
 				// Start a new room
-				new RoomBack(scene);
-				scene.rotation.y -= 750;
+				new RoomSales(scene);
 		}
 	});
 	
@@ -54,7 +65,7 @@ function RoomRelax(scene){
 	}
 	
 	
-	THREE.ImageUtils.loadTexture('images/luminis1.png', undefined, function(texture){
+	THREE.ImageUtils.loadTexture('images/luminis/luminis1.png', undefined, function(texture){
 		roomRelax.luminis1 = roomRelax.detail = new DetailImage(scene, texture, {
 			scale: 100,
 			degree: 0,
@@ -63,7 +74,7 @@ function RoomRelax(scene){
 		});
 	});
 	
-	THREE.ImageUtils.loadTexture('images/luminis2.png', undefined, function(texture){
+	THREE.ImageUtils.loadTexture('images/luminis/luminis2.png', undefined, function(texture){
 		roomRelax.luminis2 = roomRelax.detail = new DetailImage(scene, texture, {
 			scale: 100,
 			degree: 60,
@@ -72,7 +83,7 @@ function RoomRelax(scene){
 		});
 	});
 	
-	THREE.ImageUtils.loadTexture('images/luminis3.png', undefined, function(texture){
+	THREE.ImageUtils.loadTexture('images/luminis/luminis3.png', undefined, function(texture){
 		roomRelax.luminis3 = roomRelax.detail = new DetailImage(scene, texture, {
 			scale: 100,
 			degree: 120,
@@ -81,7 +92,7 @@ function RoomRelax(scene){
 		});
 	});
 	
-	THREE.ImageUtils.loadTexture('images/luminis4.png', undefined, function(texture){
+	THREE.ImageUtils.loadTexture('images/luminis/luminis4.png', undefined, function(texture){
 		roomRelax.luminis4 = roomRelax.detail = new DetailImage(scene, texture, {
 			scale: 100,
 			degree: 180,
@@ -90,7 +101,7 @@ function RoomRelax(scene){
 		});
 	});
 	
-	THREE.ImageUtils.loadTexture('images/luminis5.png', undefined, function(texture){
+	THREE.ImageUtils.loadTexture('images/luminis/luminis5.png', undefined, function(texture){
 		roomRelax.luminis5 = roomRelax.detail = new DetailImage(scene, texture, {
 			scale: 100,
 			degree: 240,
@@ -99,7 +110,7 @@ function RoomRelax(scene){
 		});
 	});
 	
-	THREE.ImageUtils.loadTexture('images/luminis6.png', undefined, function(texture){
+	THREE.ImageUtils.loadTexture('images/luminis/luminis6.png', undefined, function(texture){
 		roomRelax.luminis6 = roomRelax.detail = new DetailImage(scene, texture, {
 			scale: 100,
 			degree: 300,
@@ -110,7 +121,7 @@ function RoomRelax(scene){
 	
 	scene.updatables.push(function(){
 		
-		var orbitTheta = cardboard.orbitControls.theta;
+		var orbitTheta = cardboard.theta;
 		if (roomRelax.luminis1 != undefined){
 			// reverse theta to degree
 			var degrees = (orbitTheta * 180/Math.PI) + 180;
@@ -160,8 +171,9 @@ function RoomRelax(scene){
 		this.luminis5.remove();
 		this.luminis6.remove();
 		
-		this.navigationArrowToRelax.remove();
-		this.navigationArrowToBack.remove();
+		this.navigationArrowToArrival.remove();
+		this.navigationArrowToBack.remove();	
+		this.navigationArrowToSales.remove();
 
 		this.textLights.remove();
 		

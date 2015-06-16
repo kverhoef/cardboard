@@ -37,7 +37,7 @@ function Ball(scene, args) {
 	
 	var collidableMeshList = args.collidableMeshList;
 	
-	var ballSpeed = 0.1;
+	var ballSpeed = 0.2;
 	
 	this.resetStartPosition = function(){
 		root.ballDirX = 1;

@@ -36,6 +36,8 @@ function Cardboard() {
   this.animate = this.animate.bind(this);
   setTimeout(this.play.bind(this), 0);
 
+  this.target = new THREE.Vector3(0,0,0);
+
 }
 
 Cardboard.prototype.initControls = function(event) {
@@ -90,11 +92,23 @@ Cardboard.prototype.update = function() {
     this.resize();
   }
   this.camera.updateProjectionMatrix();
+  
   if (this.controls.freeze === false) {
     this.controls.update();
   } else {
     this.orbitControls.update();
   }
+
+  var vector = new THREE.Vector3( 0, 0, 1 );
+  vector.applyQuaternion( this.camera.quaternion ); 
+  
+  var x = vector.x;
+  var y = vector.y;
+  var z = vector.z;
+  
+  this.theta = Math.atan2( x, z );
+  this.phi = Math.atan2( Math.sqrt( x * x + z * z ), y );
+
 };
 
 Cardboard.prototype.render = function() {

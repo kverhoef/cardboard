@@ -6,7 +6,6 @@ RoomChef.prototype = Object.create(THREE.Object3D.prototype);
 		var room = this;
 		scene.room = this;
 		
-		
 		this.photoSphere = new PhotoSphere(scene, 'images/rooms/PANO_Kantoor_directeur.jpg');
 		
 		this.textLights = new TextLights(scene, {});		
@@ -16,7 +15,7 @@ RoomChef.prototype = Object.create(THREE.Object3D.prototype);
 				scale: 28,
 				degree: 163,
 				verticalDegree: -11.5,
-				radius: 12.5 * SCALE,
+				radius: 12.5 * SCALE
 			});
 			room.whiteboard.mesh.rotation.y = 0.5;
 			room.whiteboard.mesh.rotation.x = -0.02;
@@ -28,6 +27,17 @@ RoomChef.prototype = Object.create(THREE.Object3D.prototype);
 				degree: 0,
 				verticalDegree: 0,
 				radius: 12.5 * SCALE,
+				onFocus: function() {
+					new DetailImage(scene, texture, {
+						scale: 15,
+						degree: 0,
+						verticalDegree: 0,
+						radius: 8 * SCALE,
+						onBlur: function() {
+							this.remove();
+						}
+					});
+				}
 			});
 			room.vandijk3.mesh.rotation.y = 0.15;
 			room.vandijk3.mesh.rotation.x = 0;
@@ -40,6 +50,17 @@ RoomChef.prototype = Object.create(THREE.Object3D.prototype);
 				degree: 95,
 				verticalDegree: -40,
 				radius: 12 * SCALE,
+				onFocus: function() {
+					new DetailImage(scene, texture, {
+						scale: 15,
+						degree: 95,
+						verticalDegree: -40,
+						radius: 8 * SCALE,
+						onBlur: function() {
+							this.remove();
+						}
+					});
+				}
 			});
 			room.vandijk1.mesh.rotation.x = -1;
 			room.vandijk1.mesh.rotation.y = -0.21;
@@ -51,6 +72,17 @@ RoomChef.prototype = Object.create(THREE.Object3D.prototype);
 				degree: 95,
 				verticalDegree: 0,
 				radius: 12 * SCALE,
+				onFocus: function() {
+					new DetailImage(scene, texture, {
+						scale: 20,
+						degree: 95,
+						verticalDegree: 0,
+						radius: 8 * SCALE,
+						onBlur: function() {
+							this.remove();
+						}
+					});
+				}
 			});
 			room.vandijk2.mesh.rotation.z = 0.13;
 		});

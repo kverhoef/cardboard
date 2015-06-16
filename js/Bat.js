@@ -34,8 +34,8 @@ function Bat(scene, args) {
 	scene.updatables.push(function(){
 
 		// view =  0.6 ] 0 [ -0.6
-		var orbitTheta = cardboard.orbitControls.theta;
-		var phi = cardboard.orbitControls.phi - 1.5;
+		var orbitTheta = cardboard.theta;
+		var phi = cardboard.phi - 1.5;
 		
 		var movementSpeed = 15;
 		
