@@ -2,9 +2,9 @@
     <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "nl.kevinverhoef.cardboard"
-        version   = "0.1">
+        version   = "1.0">
 
-    <name>Cardboard</name>
+    <name>Luminis Cardboard</name>
 
     <description>
         Cardboard navigable spheres with three.js
