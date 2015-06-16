@@ -1,6 +1,6 @@
 ![alt tag](https://raw.githubusercontent.com/quanto/cardboard/master/icon.png)
 
-# Cardboard
+# Luminis Cardboard Experiment
 Cardboard (VR) navigable spheres with Three.js.
 
 ## Example
